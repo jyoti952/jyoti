@@ -1,0 +1,73 @@
+@import "color";
+@import "break-points";
+
+.inner-page-container {
+  .mission_wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  h1 {
+    text-align: left;
+    font-size: 56px;
+    line-height: 1.07;
+    @include bp(lg-max) {
+      font-size: 54px;
+    }
+    @include bp(smd-max) {
+      font-size: 48px;
+    }
+  }
+  p {
+    text-align: left;
+    font-size: 20px;
+    line-height: 28px;
+    color: $white !important;
+    @include bp(lg-max) {
+      font-size: 18px;
+    }
+    @include bp(smd-max) {
+      // font-size: 16px;
+    }
+    a {
+      color: $orange;
+    }
+  }
+  .mission_content {
+    padding-right: 42px;
+    width: 53%;
+    @include bp(lg-max) {
+      padding-right: 20px;
+    }
+    @include bp(smd-max) {
+      width: 100%;
+      padding: 0;
+      margin-bottom: 50px;
+    }
+    @include bp(sm-max) {
+      margin-bottom: 30px;
+    }
+  }
+  .mission_img {
+    padding-left: 42px;
+    width: 46%;
+    @include bp(lg-max) {
+      padding-left: 20px;
+    }
+    @include bp(smd-max) {
+      width: 100%;
+      padding: 0;
+    }
+  }
+}
+
+.landing_btns {
+  margin-top: 45px;
+  .square-btn {
+    margin-right: 21px;
+    @include bp(smd-max) {
+      margin-right: 10px;
+    }
+  }
+}

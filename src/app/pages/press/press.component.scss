@@ -1,0 +1,104 @@
+@import "color";
+@import "mixins";
+@import "break-points";
+
+.press_listing {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -12px;
+  li {
+    width: 50%;
+    padding: 0 12px;
+    margin-bottom: 24px;
+    @include bp(smd-max) {
+      width: 100%;
+    }
+    .press_outer {
+      padding: 36px;
+      border-radius: 12px;
+      box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);
+      background-color: $twilight;
+      display: flex;
+      color: $white;
+      text-decoration: none;
+      height: 100%;
+      @include bp(smd-max) {
+        padding: 25px;
+      }
+      @include bp(sm-max) {
+        padding: 20px;
+      }
+      @include bp(xs-max) {
+        flex-wrap: wrap;
+        text-align: center;
+      }
+      .press_img {
+        width: 240px;
+        height: 240px;
+        overflow: hidden;
+        border-radius: 12px;
+        @include bp(lg-max) {
+          width: 150px;
+          height: 150px;
+        }
+        @include bp(xs-max) {
+          margin: 0 auto 25px;
+        }
+        @include bp(smd-max) {
+            width: 240px;
+            height: 240px;
+        }
+        img {
+          border-radius: 12px;
+          @include transition(all 0.3s);
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+        &:hover {
+          img {
+            @include scale(1.03);
+          }
+        }
+      }
+      .press_content {
+        width: calc(100% - 240px);
+        padding-left: 36px;
+        @include bp(lg-max) {
+          width: calc(100% - 150px);
+          padding-left: 20px;
+        }
+        @include bp(xs-max) {
+          width: 100%;
+          padding: 0;
+        }
+        h3 {
+          font-size: 20px;
+          line-height: 1.2;
+          font-family: "circularbook";
+          font-weight: normal;
+          color: $white;
+          @include bp(lg-max) {
+            font-size: 18px;
+          }
+          @include bp(sm-max) {
+            font-size: 16px;
+          }
+          .tag {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.25;
+            display: block;
+            margin-top: 16px;
+          }
+          &:hover {
+            .tag {
+              text-decoration: underline;
+
+            }
+        }
+      }
+    }
+  }
+}
+}

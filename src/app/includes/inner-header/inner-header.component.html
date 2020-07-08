@@ -1,0 +1,78 @@
+<header>
+  <div class="container lg">
+
+    <div class="left_header">
+      <a [routerLink]="['/']" class="inner-logo" title="Miracle On 22nd Street">
+        <img src="assets/images/logo-inner.svg" alt="">
+      </a>
+      <app-inner-header-nav></app-inner-header-nav>
+    </div>
+
+    <div class="right_header">
+      <!-- <a href="javascript:void(0)" class="right_header_inner">
+        <i>
+          <img src="assets/images/headphone-grey.svg" alt="">
+          <img class="active_img" src="assets/images/headphone-red.svg" alt="">
+        </i> Help?
+      </a> -->
+      <!-- <div class="right_header_inner notifications"> -->
+        <!-- active -->
+        <!-- remove "active" class from right_header_inner when there is no notifications -->
+        <!-- <a href="javascript:void(0)">
+          <i>
+            <img src="assets/images/bell-grey.svg" alt="">
+            <img class="active_img" src="assets/images/bell-red.svg" alt=""> -->
+            <!-- <em class="count">2</em> -->
+          <!-- </i>Notification -->
+        <!-- </a> -->
+      <!-- </div> -->
+      <div  class="profile_dropdown" [ngClass]="{'active': dropdownVisible}">
+        <div *ngIf ="role=='elf'">
+            <a class="right_header_inner profile" (click)="toggleDropdown()" [ngClass]="{'active': dropdownVisible}">
+                <i>
+                  <img [src]="image" alt="">
+                  <em class="status"></em>
+                </i>{{user}}!
+              </a>
+        </div>
+        <div *ngIf ="role=='family'">
+          <a class="right_header_inner profile" (click)="toggleDropdown()" [ngClass]="{'active': dropdownVisible}">
+              <i>
+                <img src="{{familydatas.photo}}" alt="">
+                <em class="status"></em>
+              </i>{{familydatas.name}}!
+            </a>
+        </div> 
+        <div *ngIf ="role=='admin'">
+          <a class="right_header_inner profile" (click)="toggleDropdown()" [ngClass]="{'active': dropdownVisible}">
+              <i >
+                <img src="assets/images/admin-profile.png" alt="">
+                <em class="status"></em>
+              </i>{{name}}!
+            </a>
+        </div> 
+
+        <div class="profile_dropdown_menu" >
+          <ul>
+            <li *ngIf = "role == 'elf'"><a title="Profile" href="javascript:void(0)" (click)="myprofile(id)">
+                <i><img src="assets/images/user-profile.svg" href="javascript:void(0)" alt="">
+                </i> Profile</a>
+            </li>
+            <li *ngIf = "role =='family'"><a title="Profile" href="javascript:void(0)" (click)="myprofile(id)">
+              <i><img src="assets/images/user-profile.svg" href="javascript:void(0)" alt="">
+              </i> Profile</a>
+          </li>
+          <!-- <li *ngIf = "role =='admin'"><a title="Profile" href="javascript:void(0)" (click)="myprofile(id)">
+            <i><img src="assets/images/user-profile.svg" href="javascript:void(0)" alt="">
+            </i> Profile</a>
+         </li> -->
+            <li><a href="javascript:void(0)" title="Logout" (click)="logoutAction()">
+                <i><img src="assets/images/user-logout.svg" alt=""></i>
+             Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,33 @@
+<div class="modal-overlay" (click)="closeMatchFamilyPopup()"></div>
+<div class="modal-wrapper">
+  <div class="modal modal-sm match-family-popup">
+    <div class="modal-sm-inner">
+      <div class="modal-header">
+        <button class="close-modal" (click)="closeMatchFamilyPopup()" title="close">
+          <img src="assets/images/modal-close.svg" alt="">
+        </button>
+        <h2>Request A Match!</h2>
+        <p>Are you sure you want to match with {{name}}?</p>
+      </div>
+      <div class="modal-body">
+        <div class="profile-wrapper">
+          <div class="profile-image">
+            <img [src]="photo" alt="">
+          </div>
+          <div class="profile-image">
+            <img [src]="image" alt="">
+          </div>
+        </div>
+        <!-- <p class="profile-name">{{name}}</p>  -->
+        <h3>Click on request match to get matched with {{name}}!</h3>
+      </div>
+      <div class="modal-footer">
+        <a  (click)="closeMatchFamilyPopup();closeProfileDetailSidebar();matchwithFamily()"
+          routerLinkActive="router-link-active" class="orange-button" title="Request to chat with {{name}} "><span><img
+              src="assets/images/heart-white.svg" alt=""></span>Request to match with {{name}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>

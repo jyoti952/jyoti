@@ -1,0 +1,46 @@
+<app-inner-header></app-inner-header>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Blocked Users</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col10">
+
+        <div class="search-bar">
+          <div class="search_left">
+            <i><img src="assets/images/search.svg" alt=""></i>
+            <input type="text" placeholder="Search with Name" [(ngModel)]="blockeduser">
+          </div>
+          
+        </div>
+
+        <div class="info-wrapper">
+          <div class="user-info-detail" *ngFor="let users of blockedUsers | filter:blockeduser | paginate: { itemsPerPage: 6, currentPage: p }">
+            <div class="img-block">
+              <a (click)="getBlockedById(users)" class="img-inner">
+                <img src={{users.photo_url}} alt="">
+              </a>
+              <span class="cyan_strip truncated" title={{users.organisation}}>{{users.organisation}}</span>
+            </div>
+            <div class="address-block">
+              <h3 *ngIf="users.user_name">{{users.user_name}}</h3>
+              <h3 *ngIf="!users.user_name">{{users.name}}</h3>
+              <p>{{users.city}}</p>
+            </div>
+          </div>
+        </div>
+        <pagination-controls  class="stylePagination" responsive="true" (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+      </ngx-loading>
+    </div>
+  </div>
+</div>

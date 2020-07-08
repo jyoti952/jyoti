@@ -1,0 +1,65 @@
+<app-inner-header></app-inner-header>
+<app-flagged-user-popup></app-flagged-user-popup>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Flagged Users</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col10">
+
+        <div class="search-bar">
+          <div class="search_left">
+            <i><img src="assets/images/search.svg" alt=""></i>
+            <input type="text" placeholder="Search with Name" [(ngModel)]="searchValue">
+          </div>
+          
+        </div>
+
+        <div class="info-wrapper">
+          <div class="user-info-detail" *ngFor="let families of flaggedProfile | filter:searchValue | paginate: { itemsPerPage: 6, currentPage: p } " (click)="openFlaggedPopup()">
+            <div class="img-block">
+              <a href="javascript:void(0)" class="img-inner">
+                <img src={{families.photo}} alt="">
+              </a>
+              <span class="cyan_strip truncated" title={{families.city}}>{{families.city}}</span>
+              <ul class="link-wrapper">
+                <li>
+                  <button class="like-icon matched" (click)="removeFlag(families)">
+                    <!-- <i><img src="assets/images/flag1.svg" alt=""></i> -->
+                    <i>
+                      <img src="assets/images/flag1.svg" alt="">
+                      <img class="filled" src="assets/images/flag1-white.svg"  alt="">
+                    </i>
+                  </button>
+
+                </li>
+                <li>
+                  <button class="like-icon" (click)="gotoConversation(families)">
+                    <i><img src="assets/images/chat-red.svg" alt=""></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="address-block">
+             <h3 *ngIf="families.user_name">{{families.user_name}}</h3>
+              <h3 *ngIf="!families.user_name">{{families.name}}</h3> 
+              <p>{{ families.state }}</p>
+            </div>
+          </div>
+          
+      
+        </div>
+        <pagination-controls class="stylePagination" responsive="true" autoHide="true" (pageChange)="p = $event" previousLabel=""
+        nextLabel=""></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

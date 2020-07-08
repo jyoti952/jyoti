@@ -1,0 +1,23 @@
+@import "break-points";
+
+img {
+    max-width: 50%;
+    @include bp(smd-max) {
+      max-width: 100%;
+    }
+}
+.center
+{
+  margin: auto;
+  width: 1000px;
+}
+
+@media only screen and (max-width: 900px) {
+  .privacy-policy-wrapper {
+    width: 100%;
+    padding:20px 0 0;
+  }
+  .policy_inner figure img{
+       width:100%;
+  }
+}

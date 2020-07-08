@@ -1,0 +1,83 @@
+<app-inner-header></app-inner-header>
+<app-letter-profile-view-popup></app-letter-profile-view-popup>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+
+    <div class="row">
+      <div class="col2 family_left_content">
+
+        <div class="page_info">
+          <h3>Choose Your Family.</h3>
+          <!-- <p>To request a match, click on the heart,</p>
+          <p>But first, check out their profiles.</p> -->
+        </div> 
+
+        <div class="family_left_content_outer">
+          <div class="user_info_outer">
+            <i class="dp"><img [src]="image" alt=""></i>
+            <div class="user_info">
+              <h4>{{user}}</h4>
+              <p>{{locations}}</p>
+            </div>
+          </div>
+          <ul class="match_conversations">
+            <li>
+              <i><img src="assets/images/heart-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_matches}}</span>
+              <p>Matches</p>
+            </li>
+            <li>
+              <i><img src="assets/images/chat-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_conversations}}</span>
+              <p>Conversations</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="family_left_content_outer">
+          <h4>New Family Matches</h4>
+          <ul class="matched_familes">
+            <li *ngFor ="let data of elfmatchdata">
+              <a href="javascript:void(0)" class="user_with_status">
+                  <i><img src={{data.photo}} alt=""></i>
+                  <em class="status"></em>
+                </a>   
+            </li>
+          </ul>  
+
+          <h4>Conversations</h4>
+          <p>Coming soon</p>
+          <!-- <ul class="conversations_list">
+
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+
+          </ul> -->
+        </div>
+
+      </div>
+
+      <div class="col10">
+        <div class="static_position">
+          <app-profile-detail></app-profile-detail>
+          <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

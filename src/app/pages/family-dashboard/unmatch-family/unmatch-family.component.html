@@ -1,0 +1,45 @@
+<div class="modal-overlay" (click)="closeUnmatchFamilyPopup()"></div>
+<div class="modal-wrapper unmatch-family">
+  <div class="modal modal-sm">
+    <div class="modal-sm-inner">
+      <div class="modal-header">
+        <button class="close-modal" (click)="closeUnmatchFamilyPopup()" title="close">
+          <img src="assets/images/modal-close.svg" alt="">
+        </button>
+        <h2>Are you sure?</h2>
+        <p>Tell us why are you unmatching with the Joe Melany?</p>
+      </div>
+
+      <form>
+        <div class="form-group">
+          <div class="custom-radio-btn stacked">
+            <label class="radio-container">
+              <input type="radio" name="radio"  value="true">
+              <span> Offensive message </span>
+            </label>
+            <label class="radio-container">
+              <input type="radio" name="radio"  value="false">
+              <span>Inappropriate photos/letters</span>
+            </label>
+            <label class="radio-container">
+              <input type="radio" name="radio"value="false">
+              <span>Bad behavior</span>
+            </label>
+            <label class="radio-container">
+              <input type="radio" name="radio" value="false">
+              <span> Feel like spam</span>
+            </label>
+            <label class="radio-container">
+              <input type="radio" name="radio"  value="false">
+              <span>Others</span>
+            </label>
+            <textarea class="form-control" placeholder="Additional Info (Required)"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="orange-button btn" title="Unmatch"><span><img src="assets/images/heart-filled - white.svg" alt=""></span>Unmatch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

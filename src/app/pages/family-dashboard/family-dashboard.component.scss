@@ -1,0 +1,83 @@
+@import 'color';
+.family-dashboard {
+  .family-profile-detail {
+    min-height: 657px;
+    display: flex;
+    flex-direction: column;
+    .footer-btn{
+        margin-top: auto;
+        padding: 0 24px;
+    }
+  }
+  .match_conversations{
+    li {
+      .count{
+        font-size: 16px;
+      }
+    }
+  }
+  .no-family-matches{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-height: 80vh;
+    flex-direction: column;
+    img{
+      margin-bottom: 20px;
+    }
+    h2{
+      color: $grey_shade_9;
+    }
+
+  }
+
+  .data{
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #313440;
+    padding-top: 12%;
+  }
+}
+
+
+
+.modal-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-wrapper {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-wrapper {
+  .modal-sm {
+    .modal-header {
+      margin: 0 -24px 1px;
+      padding: 0 24px 31px;
+      h2 {
+        + p {
+          text-align: center;
+          margin: 30px 0 0;
+          font-size: 20px;
+          line-height: 1.2;
+        }
+      }
+    }
+    .orange-button {
+      &.disable {
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.btn-disabled{
+  background-color: #cccccc;
+  border:1px solid #cccccc
+}

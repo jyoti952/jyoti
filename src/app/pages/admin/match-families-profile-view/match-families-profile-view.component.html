@@ -1,0 +1,105 @@
+<app-inner-header></app-inner-header>
+<app-match-families-profile-view-popup></app-match-families-profile-view-popup>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Matched Families</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col10">
+        <div class="static_position">
+          <div class="family-profile-detail sidebar">
+            <div class="relative_position">
+              <ng-scrollbar>
+                <div class="sidebar-content">
+                  <div class="profile-image" (click)="LetterProfileViewPopup()">
+                    <span class="cyan_strip">{{approvedFamilysbyId.organisation}}</span>
+                    <img [src]="approvedFamilysbyId.photo" alt="">
+                  </div>
+                  <div class="profile-content">
+                    <div class="address-block">
+                      <h3>{{approvedFamilysbyId.name}}</h3>
+                      <p>{{approvedFamilysbyId.state}}</p>
+                    </div>
+                    <p class="description">{{approvedFamilysbyId.profile_bio}}</p>
+                    <ul>
+                      <li>
+                        <h4>Letter</h4>
+                        <img [src]="approvedFamilysbyId.santa_letter" alt="">
+                      </li>
+                      <li>
+                        <h4>Amazon Wishlist link</h4>
+                        <p>{{approvedFamilysbyId.amazon_wishlist}}</p>
+                      </li>
+                      <li>
+                        <h4>Family Information</h4>
+                        <p>{{approvedFamilysbyId.number_of_boys}} Boys, {{approvedFamilysbyId.number_of_girls}} Girls, {{approvedFamilysbyId.nonbinary_count}} Both</p>
+                      </li>
+                      <li>
+                        <h4>Budget</h4>
+                        <p>{{approvedFamilysbyId.budget}}</p>
+                      </li>
+                      <li>
+                        <h4>Organization Preferences</h4>
+                        <p>{{approvedFamilysbyId.organisation}}</p>
+                      </li>
+                      <li>
+                        <h4>Amazon Wishlist link</h4>
+                        <p>{{approvedFamilysbyId.amazon_wishlist}}</p>
+                      </li>
+                      <li>
+                        <h4>Facebook link</h4>
+                        <p>{{approvedFamilysbyId.facebook_link}}</p>
+                      </li>
+                    </ul> 
+                  </div>
+                </div>
+              </ng-scrollbar>
+              <div class="btn-transperent-wrapper two_btns">
+                <button class="btn orange-button btn_large" (click)="removeFamily()">Block User</button> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- profile picture start -->
+
+<div *ngIf="showProfile">
+<div class="modal-overlay profileShow" (click)="LetterProfileViewPopup()"></div>
+<div class="modal-wrapper profileShow">
+  <div class="modal modal-md">
+    <div class="modal-body">
+      <button class="close-modal" (click)="LetterProfileViewPopup()" title="close">
+        <img src="assets/images/close.svg" alt="">
+      </button>
+      <div class="profile-image">
+        <img [src]="approvedFamilysbyId.santa_letter" alt="">
+      </div>
+      <div class="profile-detail">
+        <div class="user_with_status">
+          <i><img [src]="approvedFamilysbyId.photo" alt=""></i>
+        </div>
+        <div class="address-block">
+          <h3>{{approvedFamilysbyId.name}}</h3>
+          <p>{{approvedFamilysbyId.state}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- profile picture end -->

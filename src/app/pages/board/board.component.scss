@@ -1,0 +1,101 @@
+@import "color";
+@import "break-points";
+
+.board_members {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -12px 118px;
+  justify-content: center;
+  li {
+    padding: 0 12px;
+    width: 50%;
+    @include bp(smd-max) {
+        width: 100%;
+    }
+    margin-bottom: 26px;
+    .member_outer {
+      border-radius: 8px;
+      box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);
+      background-color: #573f78;
+      text-align: center;
+      padding: 48px 50px;
+      word-spacing: 3px;
+      @include bp(smd-max) {
+          padding: 16px 18px;
+          text-align: justify;
+      }
+      text-align: center;
+      height: 100%;
+      .dp {
+        display: block;
+        height: 204px;
+        width: 204px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        img {
+          height: 100%;
+          width: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+      h2 {
+        font-size: 34px;
+        line-height: 1.12;
+        letter-spacing: -0.3px;
+        color: $white;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.43;
+        color: $white;
+      }
+    }
+  }
+}
+
+.content-heading {
+  font-size: 56px;
+  line-height: 1.07;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.text_align {
+  word-spacing: 1.4px;
+}
+
+.committee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  li {
+    font-size: 34px;
+    line-height: 1.12;
+    letter-spacing: -0.3px;
+    color: $white;
+    margin-right: 96px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+
+.img_one{
+  height: 115px;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+  .committee {
+    li {
+      margin-right:48px;
+      font-size:170%;
+    }
+  }
+  
+}

@@ -1,0 +1,22 @@
+@import "color";
+@import "break-points";
+
+.full-page-wrapper {
+  strong {
+    font-weight: normal;
+    font-family: "circularmedium";
+  }
+  .inner-page-container {
+    padding-bottom: 0;
+    h1 {
+      margin-bottom: 24px;
+    }
+    .rounded_list {
+      li {
+        &::before {
+        border-color: $white;
+        }
+      }
+    }
+  }
+}

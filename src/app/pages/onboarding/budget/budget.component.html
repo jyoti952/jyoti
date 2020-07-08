@@ -1,0 +1,63 @@
+<div class="full-page-wrapper">
+  <div class="after-login-container">
+    <div class="content">
+      <app-onboarding-elf-nav></app-onboarding-elf-nav>
+      <h2>Your Gifting Budget</h2>
+
+
+      <form name="budgetPref" [formGroup]="budgetPref">
+        <div class="budget-organization-details">
+          <h4>Important*</h4>
+          <p>As an Elf the minimum expected contribution per child is <span class="higlighted_text">$25</span>. Click next to agree</p>
+        </div>
+        <!-- <div class="custom_radio_with_tick_container">
+          <div class="custom_radio_tick_outer">
+            <label>Up to <span>$25</span> USD</label>
+            <input type="radio" name="budget" class="custom_input" formControlName="budget" value="Up to $25"
+             >
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+
+          <div class="custom_radio_tick_outer">
+            <label>Up to <span>$50</span> USD</label>
+            <input type="radio" name="budget" class="custom_input" formControlName="budget" value="Up to $50"
+              >
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+
+          <div class="custom_radio_tick_outer">
+            <label>Up to <span>$100</span> USD</label>
+            <input type="radio" name="budget" class="custom_input" formControlName="budget" value="Up to $100"
+             >
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+
+          <div class="custom_radio_tick_outer">
+            <label>&nbsp; <span>$100+</span> USD</label>
+            <input type="radio" name="budget" class="custom_input" formControlName="budget" value="Up to $100+"
+            >
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="btn-block two-button">
+          <a [routerLink]="['/onboarding/elf/location']" class="btn prev-arrow-button" title="Previous">Previous</a>
+          <a [routerLink]="['/onboarding/elf/organisations']" class="btn next-arrow-button" title="Next" (click)="onSubmit()">Next</a>
+          <!-- <a [routerLink]="['/onboarding/elf/organisations']" class="btn next-arrow-button" title="Skip"
+            *ngIf="!checked">Skip</a> -->
+        </div>
+      </form>
+    </div>
+
+    <app-onboarding-footer></app-onboarding-footer>
+
+  </div>
+</div>

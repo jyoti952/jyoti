@@ -1,0 +1,241 @@
+@import "color";
+@import "break-points";
+
+.join_list {
+  padding: 50px 0;
+  .content-heading {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  @media only screen and (max-width: 600px) {
+    .content-height{
+      padding: 0 25px !important;
+    }
+    .main_wrapper {
+      padding: unset;
+    }
+  }
+  .join_list_wrapper {
+    border-radius: 12px;
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding: 84px 64px;
+  }
+  .content {
+    width: 37%;
+    h3 {
+      color: $white;
+      font-size: 34px;
+      line-height: 1.12;
+      margin-bottom: 40px;
+    }
+    .white-bordered {
+      height: 52px;
+      border-width: 1px;
+      border-radius: 8px;
+      text-decoration: none;
+      padding: 0 21px;
+      &:hover {
+        background: transparent !important;
+        color: $white !important;
+        opacity: 0.8;
+      }
+      span {
+        margin-left: 24px;
+        line-height: 0;
+      }
+    }
+  }
+  @media only screen and (max-width: 1200px) {
+    .content {
+      width: 60%;
+    }
+  }
+  @media only screen and (max-width: 900px) {
+    .content {
+      width: 100%;
+    }
+    .footer {
+      display: block;
+    }
+
+  }
+}
+
+footer {
+  .social_links {
+    background-color: $twilight;
+    padding: 60px 0;
+    margin-top:60px;
+    .links {
+      display: flex;
+      justify-content: center;
+      width: 888px;
+      margin: 0 auto;
+      max-width: 100%;
+      li {
+        width: 33.33%;
+        text-align: center;
+        a {
+          text-decoration: none;
+          font-size: 32px;
+          line-height: 1;
+          color: $white;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    .social_links {
+      padding:10px 0px;
+      .links{
+        display: flex;
+        text-align: left;
+        flex-direction: column;
+        align-items: left;
+        li {
+          margin: 15px 0;
+          text-align: left;
+        }
+      }
+    }
+  }
+  .bottom_footer {
+    padding: 60px 0;
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .text {
+      color: $white;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+  }
+  .footer_links {
+    display: flex;
+    justify-content: flex-end;
+    li {
+      margin-right: 24px;
+      &:last-child {
+        margin-right: 0;
+      }
+      a {
+        font-size: 16px;
+        line-height: 1.25;
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .bottom_footer{
+      .container {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .text {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import "color";
+@import "break-points";
+
+.full-page-wrapper {
+  background: $primary;
+}
+
+.content-wrapper {
+  .left-container {
+    padding-right: 25px;
+    @include bp(smd-max) {
+      padding-right: 0;
+    }
+    @include bp(xlg-max) {
+      min-height: inherit;
+      width: 49%;
+    }
+    .landing-page-container {
+      padding-top: 19px;
+      width: 100%;
+      @include bp(xlg-max) {
+        padding-top: 180px;
+      }
+      @include bp(lg-max) {
+        padding-top: 160px;
+      }
+      @include bp(md-max) {
+        padding-top: 140px;
+      }
+      @include bp(smd-max) {
+        max-width: 100%;
+      }
+      h1 {
+        color: $white;
+        margin-bottom: 60px;
+      }
+      .orange-button {
+        font-family: "circularbook";
+        display: inline-flex;
+        width: auto;
+        padding: 0 32px;
+        margin: 0;
+        @include bp(xxs-max) {
+          padding: 0 12px;
+          width: 100%;
+        }
+        span {
+          margin: 0 0 0 10px;
+        }
+      }
+    }
+  }
+}
+
+
+.form-group {
+  margin-bottom: 24px;
+  .form-control {
+    background: transparent;
+    border-radius: 6px;
+    border: solid 1px #f1f1f1;
+    padding: 14px 20px;
+    color: $white;
+  }
+}
+
+.two_column {
+  display: flex;
+  @include bp(smd-max) {
+      display: block;
+  }
+  justify-content: space-between;
+  .form-group {
+    width: 48%;
+    @include bp(smd-max) {
+        width: 100%;
+    }
+  }
+}
+
+form {
+  padding-top: 0;
+}

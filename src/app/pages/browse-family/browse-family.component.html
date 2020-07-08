@@ -1,0 +1,218 @@
+<app-inner-header></app-inner-header>
+<app-filter></app-filter>
+
+<div class="inner-page-wrapper">
+  <div class="container lg mobile_1">
+
+    <div class="row mobile_2" >
+      <div class="col2 family_left_content mobile_1">
+
+        <div class="page_info mobile_3">
+          <h3>Choose Your Family.</h3>
+          <p>To request a match, click on the heart,</p>
+          <p>But first, check out their profiles.</p>
+        </div>
+
+        <div class="family_left_content_outer mobile_4">
+          <div class="user_info_outer mobile_5">
+            <i class="dp"><img [src]="image" alt=""></i>
+            <div class="user_info mobile_6">
+              <h4>{{user}}</h4>
+              <p>{{locations}}</p>
+            </div>
+          </div>
+          <ul class="match_conversations">
+            <li [routerLink]="['/family-matches']" class="cursor_pointer">
+              <i><img src="assets/images/heart-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_matches}}</span>
+              <p>Matches</p>
+            </li>
+            <li [routerLink]="['/conversations']" class="cursor_pointer">
+              <i><img src="assets/images/chat-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_conversations}}</span>
+              <p>Conversations</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="family_left_content_outer mobile_7">
+          <h4>New Family Matches</h4>
+          <ul class="matched_familes">
+            <li *ngFor="let family of elfmatchdata">
+              <a href="javascript:void(0)" class="user_with_status">
+                <i><img src={{family.photo}} alt=""></i>
+                <em class="status" *ngIf='family.status'></em>
+              </a>
+            </li>
+            <!-- <li>+24</li> -->
+          </ul>
+
+          <h4>Conversations</h4>
+          <ul class="conversations_list">
+
+            <li *ngFor="let list of listdata">
+              <a href="javascript:void(0)">
+                <div class="user_with_status mobile_8">
+                  <i *ngIf="list.photo_url"><img (click)="this.gotoConversation(list)" src={{list.photo_url}} alt=""></i>
+                  <i *ngIf="!list.photo_url"><img (click)="this.gotoConversation(list)" src="assets/images/dummy_user.jpeg" alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details mobile_9">
+                  <div class="name mobile_10">
+                    <h4 (click)="this.gotoConversation(list)">{{ list.name }}</h4>
+                    <!-- <span class="time">{{list.time}}</span> -->
+                  </div>
+                  <!-- <p>{{list.chat}}</p> -->
+                </div>
+              </a>
+            </li>
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status mobile_8">
+              <i><img [routerLink]="['/conversations']" src="assets/images/admin-profile.png" alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details mobile_9">
+                  <div class="name mobile_10">
+                    <h4 [routerLink]="['/conversations']">{{ list.name }}</h4>
+                    <!-- <span class="time">{{list.time}}</span> -->
+                  </div>
+                  <!-- <p>{{list.chat}}</p> -->
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="col10 family_listing mobile_11">
+        <!-- <app-search-bar></app-search-bar> -->
+
+        <div class="search-bar mobile_12">
+          <div class="search_left mobile_13">
+            <i><img src="assets/images/search.svg" alt=""></i>
+            <input type="text" (input)="onSearchChange($event.target.value)"   [(ngModel)]="searchValue" placeholder="Search family based on names, organisations or location">
+          </div>
+          <button class="search_btn" (click)="openFilterSidebar()">
+            <i>
+              <img src="assets/images/filter-icon.svg" alt="">
+             <em class="count">{{count}}</em>
+            </i>Filter
+          </button>
+        </div>
+
+        <div class="custom-tag-wrapper">
+          <ul>
+            <li class="custom-tag" *ngIf="this.filterFamily.get('familyPreferences').value && filter">
+              <span>Family Prefrences</span>
+              <button class="close" (click)="removeFilter(this.filterFamily.get('familyPreferences').value)"><img src="assets/images/close.svg" alt=""></button>
+            </li>
+            <li class="custom-tag" *ngIf="this.filterFamily.get('organization').value && filter">
+              <span>Organizations</span>
+              <button class="close"  (click)="removeFilter(this.filterFamily.get('organization').value)"><img src="assets/images/close.svg" alt=""></button>
+            </li>
+            <li class="custom-tag" *ngIf="this.filterFamily.get('location').value && filter">
+              <span>location</span>
+              <button class="close" (click)="removeFilter(this.filterFamily.get('location').value)"><img src="assets/images/close.svg" alt=""></button>
+            </li>
+          </ul>
+        </div>
+        <div class="info-wrapper mobile_14">
+            <!-- searchpipe :'state' : searchValue : 'equal'" -->
+            <div class="user-info-detail" *ngFor="let user of familyInfo | searchpipe:{name: searchValue, organisation:searchValue,  state: searchValue} | paginate: { itemsPerPage: 6, currentPage: p } ">
+            <div class="img-block mobile_16">
+              <a  (click)="getbrowseFamilyId(user)">
+                <img src={{user.photo}} alt="">
+              </a>
+              <ul class="link-wrapper">
+                <li>
+                  <button #refMatch class="like-icon" (click)="toggleShortlisted(refMatch)">
+                    <!-- [ngClass]="{'matched': refMatch.shortlisted}"> -->
+                    <i>
+                      <img src="assets/images/heart-shortlist.svg"  alt="">
+                      <img class="filled" src="assets/images/heart-filled.svg"  alt="">
+                    </i>
+                  </button>
+                </li>
+              </ul>
+              <span class="cyan_strip">{{user.organisation}}</span>
+            </div>
+            <a  class="address-block" (click)="getbrowseFamilyId(user)">
+              <h3>{{user.name}}</h3>
+              <p>{{user.state}}</p>
+            </a>
+          </div>
+          <div *ngIf="recordsCheck || browseFamily.message=='No records found'" class="recordschecks">
+             <h1>No Records found</h1>
+          </div>
+          <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+        </div>
+        <pagination-controls class="stylePagination" responsive="true" autoHide="true" (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- filtering data start -->
+
+
+<div class="page-overlays" (click)="closeFilterSidebar()" *ngIf="overlay"></div>
+<div class="family-profile-detail sidebar filter-sidebar" *ngIf="sidebar">
+
+  <div class="sidebar-content">
+
+    <img class="close-btn" src="assets/images/close - gray.svg" alt="" (click)="closeFilterSidebar()">
+
+     <form [formGroup]="filterFamily">
+      <div class="form-group">
+        <label>Choose Family Preferences</label>
+        <div class="custom_radio_with_tick_container has_three">
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/boy.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" value="boy" formControlName="familyPreferences">
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/girl.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" value="girl" formControlName="familyPreferences">
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/boy-girl.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" value="non-binary" formControlName="familyPreferences">
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Choose your Organization</label>
+        <ejs-multiselect   formControlName="organization" name="organization" class="form-control multi-select" [dataSource]='organisationsData' [value]='organisationsDefault' [fields]='organisationsFields' [placeholder]='organisationsWaterMark'></ejs-multiselect>
+      </div>
+      <div class="location-group">
+
+      <div class="form-group">
+          <label>Choose your Location</label>
+        <ejs-dropdownlist  formControlName="location" name="location" class="form-control" id='select-dropdown' [dataSource]='stateData' [value]='stateDefault' placeholder='Anywhere in United States'></ejs-dropdownlist>
+      </div>
+  </div>
+  <div class="btn-block two-button">
+    <a class="border-button btn" title="Cancel" (click)="closeFilterSidebar()">Cancel</a>
+    <a class="orange-button btn" title="Apply Changes" (click)="applyChanges(filterFamily.value)">Apply Changes</a>
+  </div>
+  </form>
+
+</div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+</ngx-loading>
+
+
+<!-- filtering data end -->

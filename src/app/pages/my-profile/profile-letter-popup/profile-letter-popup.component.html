@@ -1,0 +1,22 @@
+<div class="modal-overlay" (click)="closeLetterProfileViewPopup()"></div>
+<div class="modal-wrapper">
+  <div class="modal modal-md">
+    <div class="modal-body">
+      <button class="close-modal" (click)="closeLetterProfileViewPopup()" title="close">
+        <img src="assets/images/close.svg" alt="">
+      </button>
+      <div class="profile-image">
+        <img [src]="image" alt="">
+      </div>
+      <div class="profile-detail">
+        <div class="user_with_status">
+          <i><img [src]="image" alt=""></i>
+        </div>
+        <div class="address-block">
+          <h3>{{user}}</h3>
+          <p>{{locations}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

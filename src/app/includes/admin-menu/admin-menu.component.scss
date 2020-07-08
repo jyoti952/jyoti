@@ -1,0 +1,62 @@
+@import "color";
+@import "fonts";
+@import "mixins";
+@import "break-points";
+
+.admin-menu-sidebar {
+  // min-height: 820px;
+}
+
+.admin_menu {
+  padding: 0 26px;
+  ul {
+    li {
+      margin-bottom: 26px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 1;
+        color: $grey_shade_9;
+        letter-spacing: -0.3px;
+        font-family: "circularbold";
+        i {
+          display: inline-block;
+          height: 22px;
+          width: 22px;
+          position: relative;
+          margin-right: 17px;
+          img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            text-align: center;
+            margin: 0 auto;
+            @include transition(all 0.3s);
+            &.active_img {
+              opacity: 0;
+            }
+          }
+        }
+        &.active,
+        &:hover {
+          color: $black_shade_5;
+          i {
+            img {
+              opacity: 0;
+              &.active_img {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

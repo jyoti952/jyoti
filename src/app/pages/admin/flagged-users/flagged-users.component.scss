@@ -1,0 +1,28 @@
+@import "color";
+
+.info-wrapper {
+  .user-info-detail {
+    .img-block {
+      .like-icon {
+        &.matched {
+          background: $orange;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .inner-header-nav, .inner-header-nav {
+  display: none;
+}
+.stylePagination{
+  float:right;
+}
+
+.ngx-pagination .current{
+  background: #cb5b58 !important;
+}
+.ngx-pagination{
+  float:right;
+}
+

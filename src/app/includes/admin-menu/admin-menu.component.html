@@ -1,0 +1,25 @@
+<div class="family_left_content_outer admin-menu-sidebar">
+  <div class="user_info_outer lg">
+    <i class="dp"><img src="assets/images/admin-profile.png" alt=""></i>
+    <div class="user_info">
+      <h4>{{name}}</h4>
+      <p>New York</p>
+    </div>
+  </div>
+
+
+  <div class="admin_menu">
+    <ul>
+      <li *ngFor="let menuItems of adminMenuItems">
+        <a [routerLink]=[menuItems.link] title={{menuItems.label}} routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i>
+            <img src={{menuItems.img}} alt="">
+            <img class="active_img" src={{menuItems.activeImg}} alt="">
+          </i>
+          {{menuItems.label}}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</div>

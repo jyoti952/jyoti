@@ -1,0 +1,27 @@
+<div class="full-page-wrapper">
+  <div class="content-wrapper login-signup-container">
+    <div class="left-container">
+      <div class="login-signup-content">
+        <a [routerLink]="['/']" class="return-link"><img src="assets/images/rounded-left-arrow.svg" alt=""></a>
+        <a href="#" class="logo">
+          <img src="assets/images/logo-orange.svg" />
+        </a>
+        <div class="inner-content">
+          <h2>Welcome back, Login!</h2>
+          <p>By clicking Login, you agree to our <a [routerLink]="['/terms']" title="Terms" target="_blank">Terms</a>. Learn how we
+            process your data in our <a [routerLink]="['/privacy-policy']" title="Privacy Policy" target="_blank">Privacy Policy.</a></p>
+
+          <!-- and <a href="javscript:void(0)" title="Cookie policy">Cookie policy.</a> -->
+
+          <a [routerLink]="['/login/elf']" class="orange-button" title="Login as an Elf"><span><img src="assets/images/become_elf.svg" alt=""></span>Login as an Elf</a>
+          <a [routerLink]="['/login/family']" class="orange-button" title="Login as a family"><span><img src="assets/images/family.svg" alt=""></span>Login as a family</a>
+          <span class="optional-text">OR</span>
+          <a [routerLink]="['/signup']" class="border-button" title="Sign up">SIGN UP</a>
+          <a [routerLink]="['/mission']" class="purple-button" title="Learn More">LEARN MORE</a>
+        </div>
+      </div>
+    </div>
+    <div class="right-container" style="background-image: url('assets/images/banner.svg')">
+    </div>
+  </div>
+</div>

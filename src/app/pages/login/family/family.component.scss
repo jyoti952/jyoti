@@ -1,0 +1,22 @@
+.form-group{
+    &.password-filed {
+        margin-bottom:10px;
+        .form-control{
+            padding-right: 80px;   
+        }
+    }
+}
+
+.form-group{
+    .password-hide-show a{
+      text-decoration: none;
+      color: #9ea6b1;
+      text-align: right;
+      float: right;
+      font-style: normal;
+    }
+    .password-hide-show a:hover{
+      text-decoration: underline;
+      color: black;
+    }
+}

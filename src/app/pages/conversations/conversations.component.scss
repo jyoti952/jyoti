@@ -1,0 +1,77 @@
+@import 'break-points';
+
+.container{
+    &.lg {
+        .row {
+            .col8{
+                width: 50%;
+            }
+            .col2{
+                width: 25%;
+                
+            }
+        }
+    }
+}
+.chat-box-wrapper{
+    .chat-box {
+        .chat-box-header{
+            @include bp(lg-max){
+                padding: 15px;
+            }
+        }
+        .chat-box-body{
+            @include bp(lg-max){
+                padding: 25px 15px;
+            }
+        }
+    }
+}
+.family-profile-detail {
+    .profile-content{
+        padding: 15px 15px;
+        .link-copy{
+            button{
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+
+
+.modal-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-wrapper {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-wrapper {
+    .modal-sm {
+      .modal-header {
+        margin: 0 -24px 1px;
+        padding: 0 24px 31px;
+        h2 {
+          + p {
+            text-align: center;
+            margin: 30px 0 0;
+            font-size: 20px;
+            line-height: 1.2;
+          }
+        }
+      }
+      .orange-button {
+        &.disable {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  .button_disabled{
+    background-color: #cccccc;
+    border:1px solid #cccccc;
+  }

@@ -1,0 +1,117 @@
+<div class="full-page-wrapper">
+  <div class="after-login-container">
+    <div class="content">
+      <app-onboarding-elf-nav></app-onboarding-elf-nav>
+      <h2>Choose your location</h2>
+      <form [formGroup]="location" name="location">
+   
+          <div class="location-group">
+
+            <div class="form-group" [ngClass]="{'has-error':location.get('addressLine1Elf').touched && location.get('addressLine1Elf').invalid}">
+              <label>Enter your address (optional)</label>
+              <input type="text" class="form-control small-input" placeholder="Address line 1" formControlName="addressLine1Elf">
+              <!-- <span class="error-msg" *ngIf="location.get('addressLine1Elf').touched && location.get('addressLine1Elf').invalid">
+                <span *ngIf="location.get('addressLine1Elf').errors.required">
+                  This field is required
+                </span>
+                <span *ngIf="location.get('addressLine1Elf').errors.pattern">
+                  white-space at the beginning is not allowed
+                </span>
+                <span *ngIf="location.get('addressLine1Elf').errors.minlength">
+                  Please enter atleast 3 characters
+                </span>
+              </span> -->
+            </div>
+  
+            <div class="form-group" >
+              <input type="text" class="form-control small-input" placeholder="Address line 2" formControlName="addressLine2Elf">
+          
+            </div>
+            
+            <div class="form-group" [ngClass]="{'has-error':location.get('cityElf').touched && location.get('cityElf').invalid}">
+              <input type="text" class="form-control small-input" placeholder="City" formControlName="cityElf">
+              <!-- <span class="error-msg" *ngIf="location.get('cityElf').touched && location.get('cityElf').invalid">
+                <span *ngIf="location.get('cityElf').errors.required">
+                  This field is required
+                </span>
+                <span *ngIf="location.get('cityElf').errors.pattern">
+           Please enter the valid city name
+                </span>
+                <span *ngIf="location.get('cityElf').errors.minlength">
+                  Please enter atleast 3 characters
+                </span>
+              </span> -->
+            </div>
+  
+
+
+            <div class="form-group"  [ngClass]="{'has-error':location.get('locationsElf').touched && location.get('locationsElf').value=='select your state'}">
+              <ejs-dropdownlist class="form-control" id='select-dropdown' [dataSource]='stateData' [value]='stateDefault' formControlName="locationsElf" placeholder='Anywhere in United States'></ejs-dropdownlist>
+              <span class="error-msg" *ngIf=" location.get('locationsElf').touched && location.get('locationsElf').value=='Select your State'">
+                <!-- <span *ngIf="location.get('locationsElf').value=='Anywhere'">
+                  This field is required
+                </span> -->
+               
+              </span>
+            </div>
+  
+            <div class="form-group" [ngClass]="{'has-error':location.get('postalCodeElf').touched && location.get('postalCodeElf').invalid}">
+              <input type="text" class="form-control small-input" placeholder="Postal Code" formControlName="postalCodeElf">
+              <!-- <span class="error-msg" *ngIf="location.get('postalCodeElf').touched && location.get('postalCodeElf').invalid">
+                <span *ngIf="location.get('postalCodeElf').errors.required">
+                  This field is required
+                </span>
+                <span *ngIf="location.get('postalCodeElf').errors.pattern">
+                  Please enter numbers only
+                </span>
+                <span *ngIf="location.get('postalCodeElf').errors.minlength">
+                  Please enter valid postal code
+                </span>
+                <span *ngIf=" location.get('postalCodeElf').errors.maxlength">
+                  Please enter maximum 5 digits
+                </span>
+              </span> -->
+            </div>
+ 
+
+
+
+
+
+
+
+
+          <!-- <div class="form-group">
+            <label>Enter your full address*</label>
+            <input type="text" class="form-control small-input" placeholder="Address line 1">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control small-input" placeholder="Address line 2">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control small-input" placeholder="City">
+          </div>
+
+          <div class="form-group">
+            <ejs-dropdownlist class="form-control" formControlName="locations" id='select-dropdown' [dataSource]='stateData' placeholder='Anywhere in United States'>
+            </ejs-dropdownlist>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control small-input" placeholder="Postal Code">
+          </div> -->
+
+          <div class="btn-block two-button">
+            <a [routerLink]="['/onboarding/elf/family-preferences']" class="btn prev-arrow-button" title="Previous">Previous</a>
+            <a [routerLink]="['/onboarding/elf/budget']" class="btn next-arrow-button" title="Next" (click)="onSubmit()" [ngClass]="{'disable':location.get('locationsElf').value=='Select your State'}">Next</a>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <app-onboarding-footer></app-onboarding-footer>
+
+  </div>
+</div>

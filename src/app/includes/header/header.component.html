@@ -1,0 +1,57 @@
+<header id="header" [ngClass]="{'has_strip': showStrip}">
+
+  <div class="announcement_strip" *ngIf="showStrip">
+    <div class="container">
+      <i><img src="assets/images/workshop.svg" alt=""></i>
+      This workshop will open October 15, 2019! Become an elf and donate to help a family in need.
+      <a (click)="stripHide()" class="close_strip" title="Close"><img src="assets/images/close-white.svg" alt=""></a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="header-left">
+      <a href="#" class="logo" title="Miracle On 22nd Street">
+        <img src="assets/images/logo.svg" />
+      </a>
+      <ul class="align_li">
+        <li class="has_sub">
+          <a routerLinkActive="active">About Us</a>
+          <ul class="sub_menu">
+            <li><a [routerLink]="['/mission']" routerLinkActive="active">Mission</a></li>
+            <li><a [routerLink]="['/origin-story']" routerLinkActive="active">Origin Story</a></li>
+            <li><a [routerLink]="['/board']" routerLinkActive="active">Board</a></li>
+            <li><a [routerLink]="['/press']" routerLinkActive="active">Press</a></li>
+            <li><a [routerLink]="['/faq']" routerLinkActive="active">FAQ</a></li>
+            <li class="hidden_lg"><a [routerLink]="['/contact']" routerLinkActive="active">Contact</a></li>
+          </ul>
+        </li>
+        <li class="hidden_sm"><a [routerLink]="['/contact']" routerLinkActive="active">Contact</a></li>
+        <li *ngIf="user==null"><a [routerLink]="['/login/admin']">Miracle Admin</a></li> 
+
+        <li><a href="https://secure.causevox.com/pay?url=miracleon22ndstreetdonate.causevox.com" target="_blank" class="header-btn white-bordered">Give Now</a></li>
+         <li *ngIf="user==null"><a [routerLink]="['/login']" class="header-btn">Login</a></li> 
+
+        <li class="has_sub" *ngIf="user!=null"  (click)="gotodashboard()">
+           <a class="profile" >
+            <i>
+               <div class="dp"><img src="{{userProfile}}" alt=""></div> 
+               <em class="status"></em>
+            </i>{{name}}
+          </a> 
+          <ul class="sub_menu">
+            <li>
+              <a  title="Logout" (click)="logoutAction()">
+                <i><img src="assets/images/user-logout.svg" alt=""></i>Logout
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+     <ul class="header-right"> 
+         <li><a *ngIf="user==null" [routerLink]="['/signup']" title="Sign up"><i><img src="assets/images/user-white.svg" alt=""></i>Sign up</a></li> 
+        <li><a href="https://secure.causevox.com/pay?url=miracleon22ndstreetdonate.causevox.com" target="_blank" title="Donate now"><i><img src="assets/images/settings.svg" alt=""></i>Donate now</a></li> 
+     </ul> 
+  </div>
+</header>
+

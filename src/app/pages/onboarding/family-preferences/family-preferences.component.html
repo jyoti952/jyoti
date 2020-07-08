@@ -1,0 +1,71 @@
+<div class="full-page-wrapper">
+  <div class="after-login-container">
+    <div class="content family-preferences">
+      <app-onboarding-elf-nav></app-onboarding-elf-nav>
+      <h2>Enter Family Preferences</h2>
+      <form name="familyPref" [formGroup]="familyPref">
+        <!-- <div class="custom-radio-btn with-image">
+          <label class="radio-container">
+            <input type="radio" checked="checked" name="radio">
+            <div class="img-wrapper">
+              <img src="assets/images/boy-member.svg" alt="">
+              <img class="img-checked" src="assets/images/boy-member-checked.svg" alt="">
+            </div>
+          </label>
+          <label class="radio-container">
+            <input type="radio" name="radio">
+            <div class="img-wrapper">
+              <img src="assets/images/girl-member.svg" alt="">
+              <img class="img-checked" src="assets/images/girl-member-checked.svg" alt="">
+            </div>
+          </label>
+          <label class="radio-container">
+            <input type="radio" name="radio">
+            <div class="img-wrapper">
+              <img src="assets/images/group-member.svg" alt="">
+              <img class="img-checked" src="assets/images/group-member-checked.svg" alt="">
+            </div>
+          </label>
+        </div> -->
+
+        <p>Do you want to give to a family with just girls, boys, or both? Select your preference below.</p>
+        <div class="custom_radio_with_tick_container has_three">
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/boy.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" formControlName="familyPreferences"
+              value="boy">
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/girl.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" formControlName="familyPreferences"
+              value="girl">
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/boy-girl.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" formControlName="familyPreferences"
+              value="boy and girl" >
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-block two-button">
+          <a [routerLink]="['/onboarding/elf/anonymous-family']" class="btn prev-arrow-button"
+            title="Previous">Previous</a>
+          <a [routerLink]="['/onboarding/elf/location']" class="btn next-arrow-button" title="Next"
+            (click)="onSubmit()">Next</a>
+        </div>
+      </form>
+    </div>
+
+    <app-onboarding-footer></app-onboarding-footer>
+
+  </div>
+</div>

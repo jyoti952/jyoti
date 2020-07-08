@@ -1,0 +1,368 @@
+<div class="family-inner-header">
+  <app-inner-header></app-inner-header>
+</div>
+<app-family-profile-view-popup></app-family-profile-view-popup>
+<app-unmatch-family></app-unmatch-family>
+<div class="inner-page-wrapper family-dashboard">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Conversations</h3>
+          <!-- <p>Lorem Ipsum is simply dummy </p> -->
+        </div>
+        <div class="family_left_content_outer">
+          <div class="user_info_outer">
+            <i class="dp"><img src="{{familydatas?.photo}}" alt=""></i>
+            <div class="user_info">
+                <h4>{{familydatas?.name}}</h4>
+               <p>{{familydatas?.state}}</p>
+            </div>
+          </div>
+          <ul class="match_conversations">
+            <li>
+              <i><img src="assets/images/heart-red.svg" alt=""></i>
+              <span class="count">Elf</span>
+              <p>{{familydata}}</p>
+            </li>
+            <li>
+              <i><img src="assets/images/chat-red.svg" [routerLink]="['/family/conversations']" alt=""></i>
+              <span class="count">Conversations</span>
+              <p>{{totalcount}}</p>
+            </li>
+          </ul>
+        </div>
+        <div class="family_left_content_outer">
+          <h4>New Elf Matches</h4>
+          <ul class="matched_familes">
+            <li *ngFor="let data of familymatchdata">
+              <a (click)="openMatchedProfile(data)" class="user_with_status">
+                <i><img src={{data.photo}} alt=""></i>
+                <em class="status"></em>
+              </a>
+            </li>
+            <!-- <li>+24</li> -->
+          </ul>
+          <!-- (click)="goToconverstastion(list)" -->
+          <h4>Conversations</h4>
+          <!-- <p>Coming soon</p> -->
+          <ul class="conversations_list">
+            <li *ngFor="let list of listdata">
+              <a >
+                <div class="user_with_status"  (click)="goToconverstastion(list)">
+                  <i><img src={{list.photo}} alt=""></i>
+                  <em class="status" *ngIf='list.user_online'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name" (click)="goToconverstastion(list)">
+                    <h4>{{list.user_name}}</h4>
+                    <span class="time" >{{list.created_at}}</span>
+                  </div>
+                  <!-- <p>{{list.chat}}</p> -->
+                </div>
+              </a>
+            </li>
+            <li *ngFor="let data of admindata">
+              <a (click)="goToconverstastions(data)">
+                <div class="user_with_status">
+                  <i><img src="assets/images/admin-profile.png" alt=""></i>
+                  <em class="status" *ngIf='data.user_online'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name" (click)="goToconverstastions(data)">
+                    <h4>{{ data.user_name }}</h4>
+                    <span class="time">{{data.created_at}}</span>
+                  </div>
+                  <!-- <p>{{list.chat}}</p> -->
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- If there no matches make "noFamilyMatchFound" flag 'true'  -->
+      <div class="col8 chat-box-wrapper" *ngIf="!noFamilyMatchFound">
+        <!-- <span class="data" *ngIf="familymatchdata.length==0"> You have no matches yet!</span> -->
+        <div class="chat-box" [attr.data-id]="iduser">
+          <div class="chat-box-header">
+            <div class="left-header">
+              <div class="user_with_status">
+                <i *ngIf="show_image"><img src= "assets/images/admin-profile.png" alt=""></i>
+                <i *ngIf="!show_image"><img src="{{userphoto}}" alt=""></i>
+                <em *ngIf="onlineStatus" class="status"></em>
+              </div>
+              <h3>{{username}}</h3>
+            </div>
+            <button class="flag-btn" (click)="openFlagList()" *ngIf="!setFlagData">
+              <i><img src="assets/images/flag.svg" alt=""></i>
+            </button>
+            <button class="flag-btn" *ngIf="setFlagData">
+              <i><img src="assets/images/flag-red.svg" alt=""></i>
+            </button>
+          </div>
+          <div class="chat-box-body" id="chatContainer">
+            <div class="chat-request" *ngIf="messages.length === 0">
+              <div class="chat-msg-wrapper">
+                <div class="chat-msg">
+                  No message yet
+                </div>
+              </div>
+            </div>
+            <div class="chat-request" *ngFor="let data of messages">
+              <div class="chat-msg-wrapper" *ngIf="data.side == 'left'">
+                  <div class="user_with_status sm-profile" >
+                      <i *ngIf="data.sender_image !='admin image'"><img  src="{{data.sender_image}}" alt=""></i>
+                     <i *ngIf="data.sender_image=='admin image'"><img  src="assets/images/admin-profile.png" alt=""></i>
+                  </div>
+                <div class="chat-msg">
+                 {{data.body}}
+                 <img *ngIf="data.attachment_url!='' && data.attachment_url!='null' || (data.attachment!='' && data.attachment!='null')" src="{{data.attachment_url ? data.attachment_url : data.attachment}}">
+                  <!-- <a [routerLink]="['/terms']" target="_blank">(Terms and conditions Link)</a> -->
+                </div>
+                <span class="msg-time">{{data.created_at}}</span>
+              </div>
+              <div class="chat-msg-wrapper reply" *ngIf="data.side != 'left'">
+                <div class="chat-msg-wrapper">
+                <div class="user_with_status sm-profile">
+                  <i><img src="{{data.sender_image}}" alt=""></i>
+                  <!-- <i><img *ngIf="data.sender_image=='admin image' " src="assets/images/admin-profile.png" alt=""></i> -->
+                </div>
+                <div class="chat-msg">
+                  {{data.body}}
+                  <img *ngIf="data.attachment_url!='' && data.attachment_url!='null' || (data.attachment!='' && data.attachment!='null')" src="{{data.attachment_url ? data.attachment_url : data.attachment}}">
+                 </div>
+                 <span class="msg-time">{{data.created_at}}</span>
+                 </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="imagefile" class="imageupload">
+            <p *ngIf="imagefile" class="image_close_icon" (click)="removeImage()">X</p>
+            <img *ngIf="imagefile" [src]="imagefile" alt="" width="250px" height="250px">
+            <h4>{{image_name}}</h4>
+          </div>
+        </div>
+        <div class="chat-footer">
+          <div class="btn-block two-button" *ngIf="!chatRequest">
+             <button class="grey-button btn" title="Decline">Decline</button>
+            <button class="orange-button btn" title="Accept" (click)="chatRequestAccpet()">Accept</button>
+          </div>
+
+          <!-- admin chat  -->
+           <form [formGroup]="Messageform"  *ngIf="!show" >
+
+            <div class="type-msg" *ngIf="chatRequest">
+              <i
+                (click)="toggled = !toggled"
+                [(emojiPickerIf)]="toggled"
+                [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
+                (emojiPickerSelect)="handleSelection($event)"><img src="assets/images/emoji.svg" alt=""></i>
+              <input type="text" placeholder="Messages {{username}}" formControlName="meassage" [(ngModel)]="msgdata" #search>
+              <i>
+                <img src="assets/images/attach-file.svg" alt="">
+                <input type="file" class="file-input" (change)="getFiles($event)"/>
+              </i>
+              <!-- <button *ngIf="show" (click)="familyAndElfmeassge()"><img src="assets/images/send-msg.svg" alt=""></button> -->
+              <button  (click)="chatRequestfamily()"><img src="assets/images/send-msg.svg" alt=""></button>
+            </div>
+          </form>
+
+          <!-- elf or family -->
+          <form [formGroup]="Messageform" *ngIf="show">
+
+            <div class="type-msg" *ngIf="chatRequest">
+                <i
+                  (click)="toggled = !toggled"
+                  [(emojiPickerIf)]="toggled"
+                  [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
+                  (emojiPickerSelect)="handleSelection($event)"><img src="assets/images/emoji.svg" alt=""></i>
+                <input type="text" placeholder="Messages {{username}}" formControlName="meassage" [(ngModel)]="msgdata" #search>
+              <i>
+                <img src="assets/images/attach-file.svg" alt="">
+                <input type="file" class="file-input" (change)="getFiles($event)"/>
+              </i>
+              <button  (click)="familyAndElfmeassge()"><img src="assets/images/send-msg.svg" alt=""></button>
+              <!-- <button *ngIf="!show" (click)="chatRequestfamily()"><img src="assets/images/send-msg.svg" alt=""></button> -->
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col8" *ngIf="noFamilyMatchFound">
+        <div class="no-family-matches">
+            <img src="assets/images/no-matches -yet.svg" alt="">
+            <h2>You have no matches yet</h2>
+        </div>
+     </div>
+
+      <div class="col2" *ngIf="!noFamilyMatchFound">
+        <div *ngIf="unMatchedData?.role!=='admin' && unMatchedData">
+        <div class="family-profile-detail">
+          <div class="family-profile-detail">
+           <a href="javascript:void(0)" class="profile-image" (click)="openFamilyProfileViewPopup()">
+            <span class="cyan_strip">{{unMatchedData?.organisation}}</span>
+            <img src="{{unMatchedData?.photo}}">
+          </a>
+          <div class="profile-content">
+            <div class="address-block" (click)="getFamilyId(data.user_id)">
+               <h3>{{unMatchedData?.user_name}}</h3>
+               <p>{{unMatchedData?.address_line1}} {{unMatchedData?.state}}</p>
+            </div>
+            <p class="description">{{unMatchedData?.profile_bio}}</p>
+            <ul>
+              <li>
+                <h4>Desired Family Size</h4>
+               <p>{{unMatchedData?.family_preference}}</p>
+              </li>
+              <li>
+                <h4>Maximum Budget</h4>
+                <p>{{unMatchedData?.budget}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-btn">
+          <button class="orange-button btn" title="Unmatch"  *ngIf="match_flag" (click)="openUnmatchFamilyPopup()"><span><img src="assets/images/heart-filled - white.svg" alt=""></span>Unmatch</button>
+          <button class="orange-button btn btn-disabled" title="Unmatch" *ngIf="!match_flag"  disabled><span><img src="assets/images/heart-filled - white.svg" alt=""></span>Unmatch</button>
+        </div>
+      </div>
+    </div>
+    <div class="col10">
+      <div class="static_position">
+        <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading> -->
+    </div>
+   </div>
+  </div>
+</div>
+</div>
+
+
+<!-- unmatched user start -->
+
+<div *ngIf="unmatched">
+  <div class="modal-overlay" (click)="closeUnmatchFamilyPopup()"></div>
+  <div class="modal-wrapper unmatch-family">
+    <div class="modal modal-sm">
+      <div class="modal-sm-inner">
+        <div class="modal-header">
+          <button class="close-modal" (click)="closeUnmatchFamilyPopup()" title="close">
+            <img src="assets/images/modal-close.svg" alt="">
+          </button>
+          <h2>Are you sure?</h2>
+          <p>Tell us why are you unmatching with the {{unMatchedData.user_name}}?</p>
+        </div>
+        <form [formGroup]="unmatch">
+          <div class="form-group">
+            <div class="custom-radio-btn stacked">
+              <label class="radio-container">
+                <input type="radio" name="unmatch_reason"  value="Offensive message" formControlName="unmatch_reason">
+                <span> Offensive message </span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="unmatch_reason"  value="Inappropriate photos/letters" formControlName="unmatch_reason">
+                <span>Inappropriate photos/letters</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="unmatch_reason" value="Bad behavior" formControlName="unmatch_reason">
+                <span>Bad behavior</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="unmatch_reason" value="Feel like spam" formControlName="unmatch_reason">
+                <span> Feel like spam</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="unmatch_reason"  value="Others" formControlName="unmatch_reason">
+                <span>Others</span>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="orange-button btn" title="Unmatch" (click)="unmatching(unmatch.value)" [disabled]="unmatch.invalid"><span><img src="assets/images/heart-filled - white.svg" alt=""></span>Unmatch</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <!--unmatched user end-->
+
+<!--flagged user start-->
+
+<div *ngIf="flagPopup">
+  <div class="modal-overlay" (click)="flaggedPopup()"></div>
+  <div class="modal-wrapper">
+    <div class="modal modal-sm">
+      <div class="modal-sm-inner">
+        <div class="modal-header">
+          <button class="close-modal" (click)="flaggedPopup()" title="close">
+            <img src="assets/images/modal-close.svg" alt="">
+          </button>
+          <h2>Flag to naughty list!</h2>
+          <p>Why you want to flag {{unMatchedData.user_name}} family to naughty list?</p>
+        </div>
+
+        <form  [formGroup]='elfForm'>
+
+          <div class="form-group">
+            <div class="custom-radio-btn stacked">
+              <label class="radio-container">
+                <input type="radio" name="flag_reason"  value="Offensive message" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/chat-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/chat-white.svg">
+                  </i>Offensive message
+                </span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="flag_reason"  value="Inappropriate photos/letters" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/pic-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/pic-white.svg">
+                  </i>Inappropriate photos/letters</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="flag_reason" value="Bad behaviour" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/chat-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/chat-white.svg">
+                  </i>Bad behaviour</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="flag_reason" value="Feel like spam" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/chat-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/chat-white.svg">
+                  </i>Feel like spam</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="flag_reason"  value="Others" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/note-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/note-white.svg">
+                  </i>Others</span>
+              </label>
+            </div>
+
+            <textarea class="form-control" name="flag_additional_info" formControlName="flag_additional_info" placeholder="Additional Info (Required)"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button class="orange-button" (click)="familyFlagData(elfForm.value)" [disabled]="elfForm.invalid"><span><img src="assets/images/flag1-white.svg" alt=""></span>Flag to naughty list</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+  </ngx-loading>
+  <!--flagged user end-->
+</div>

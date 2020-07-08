@@ -1,0 +1,74 @@
+<div class="full-page-wrapper">
+  <div class="content-wrapper login-signup-container">
+    <div class="left-container">
+      <div class="login-signup-content">
+        <a [routerLink]="['/signup']" class="return-link"><img src="assets/images/rounded-left-arrow.svg" alt=""></a>
+        <a href="#" class="logo">
+          <img src="assets/images/logo-orange.svg" />
+        </a>
+        <div class="inner-content">
+          <h2>Create your family account</h2>
+          <form name="familySignup" [formGroup]="familySignup" (keyup.enter)="onSubmit(familySignup.value)" (ngSubmit)="onSubmit(familySignup.value)" >
+            <div class="form-group" [ngClass]="{'has-error':familySignup.get('name').touched && familySignup.get('name').invalid}">
+              <label>Enter your full name <sup>*</sup></label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Your name">
+              <span class="error-msg" *ngIf="familySignup.get('name').touched && familySignup.get('name').invalid">
+                <span *ngIf="familySignup.get('name').errors.required">
+                  This field is required
+                </span>
+                <span *ngIf="familySignup.get('name').errors.pattern">
+                  Only characters are allowed
+                </span>
+              </span>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error':familySignup.get('email').touched && familySignup.get('email').invalid}">
+              <label>Email address <sup>*</sup></label>
+              <input type="email" class="form-control" formControlName="email" placeholder="you@gmail.com">
+              <span class="error-msg" *ngIf="familySignup.get('email').touched && familySignup.get('email').invalid">
+                <span *ngIf="familySignup.get('email').errors.required">
+                  This field is required
+                </span>
+                <span *ngIf="familySignup.get('email').errors.pattern">
+                  Please enter a valid email id
+                </span>
+                <!-- <span *ngIf="familySignup.get('email').errors.email">
+                  Email must be a valid email address
+                </span> -->
+              </span>
+            </div>
+            <div class="form-group password-filed" [ngClass]="{'has-error':familySignup.get('password').touched && familySignup.get('password').invalid}">
+              <label>Password <sup>*</sup></label>
+              <input type="password" #password class="form-control" formControlName="password" placeholder="Enter 6 characters or more" (focus)="isFocused = true">
+              <div class="error_msg_hint">
+                <!-- <span class="password-hint">Password Hint:Ad1blw</span> -->
+                <span class="error-msg" *ngIf="familySignup.get('password').touched && familySignup.get('password').invalid">
+                  <span *ngIf="familySignup.get('password').errors.required">
+                    This field is required
+                  </span>
+                  <span *ngIf="familySignup.get('password').errors.pattern">
+                    Please set a password which has atleast 1 uppercase and 1 lowercase and 1 digit
+                  </span>
+                  <span *ngIf="familySignup.get('password').errors.maxlength">
+                    Password should be between 6-16(Max limit) Characters
+                  </span>
+                  <span *ngIf="familySignup.get('password').errors.minlength">
+                    Password should be between 6-16(Max limit) Characters
+                  </span>
+                </span>
+              </div>
+              <em class="password-hide-show" [ngClass]="{'enable':  isFocused }" (click)="changeVisibility(password)">{{ passwordVisible ? 'Hide' : 'Show' }}</em>
+            </div>
+            <div class="custom_checkbox">
+              <input type="checkbox" class="custom_input" formControlName="acceptTerms">
+              <span class="checkmark"></span>
+              <label>By clicking Sign Up, you agree to our <a [routerLink]="['/terms']" (click)="storeData()">Terms and Conditions</a></label>
+            </div>
+            <button type="button"  [ngClass]="{'disable': familySignup.invalid}" class="dark-orange-button" (click)="onSubmit(familySignup.value)" title="Sign up">SIGN UP</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="right-container" style="background-image: url('assets/images/banner.svg')">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+.content-wrapper {
+  &.login-signup-container {
+    @include bp(md-max) {
+      flex-wrap: wrap;
+    }
+    .left-container {
+      padding: 48px 100px;
+      background: $white;
+      z-index: 2;
+      align-items: flex-start;
+      position: relative;
+      width: 660px;
+      @include bp(xlg-max) {
+        width: 45%;
+        padding: 50px;
+      }
+      @include bp(smd-max) {
+        width: 100%;
+      }
+      @include bp(sm-max) {
+        padding: 30px;
+      }
+      .inner-content {
+        padding-top: 82px;
+        @include bp(lg-max) {
+          padding-top: 60px;
+        }
+        @include bp(sm-max) {
+          padding-top: 40px;
+        }
+        p {
+          margin-bottom: 46px;
+          @include bp(sm-max) {
+            margin-bottom: 35px;
+          }
+        }
+      }
+      .login-signup-content {
+        width: 100%;
+      }
+      .custom_checkbox {
+        margin: -21px 0 48px;
+        @include bp(smd-max) {
+          margin: -10px 0 40px;
+        }
+      }
+    }
+    .right-container {
+      position: static;
+      width: calc(100% - 660px);
+      @include bp(xlg-max) {
+        width: 55%;
+      }
+      @include bp(smd-max) {
+        width: 100%;
+        display: none;
+      }
+    }
+  }
+}

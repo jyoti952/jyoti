@@ -1,0 +1,35 @@
+.form-group,
+.custom-radio-btn {
+  margin-bottom: 0;
+}
+.custom_radio_with_tick_container {
+  margin-bottom: 0;
+  .custom_radio_tick_outer {
+    margin: 0;
+    height: 140px;
+    img {
+      max-width: 75%;
+    }
+  }
+}
+
+.orange-button:hover {
+  opacity: 1;
+}
+
+form {
+  padding-top: 0;
+}
+
+.family_profile{
+  opacity: 1;
+  visibility: visible;
+}
+.family_wrapper{
+  opacity: 1;
+  visibility: visible;
+}
+
+.match_conversations li{
+  cursor: pointer;
+}

@@ -1,0 +1,13 @@
+::ng-deep .family-profile-view-popup-open{
+    overflow: hidden;
+    app-family-profile-view-popup {
+      .modal-overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-wrapper {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+}

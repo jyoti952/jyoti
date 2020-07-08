@@ -1,0 +1,75 @@
+<app-inner-header></app-inner-header>
+<app-family-signedup-letter-view-popup></app-family-signedup-letter-view-popup>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Family Signed Up</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col10">
+        <div class="static_position">
+          <div class="family-profile-detail sidebar">
+            <div class="relative_position">
+              <ng-scrollbar>
+                <div class="sidebar-content">
+                  <div class="profile-image" (click)="openLetterProfileViewPopup()">
+                    <!-- <span class="cyan_strip">{{newFamilysbyId.organisation}}</span> -->
+                    <img [src]="resphoto" alt="">
+                  </div>
+                  <div class="profile-content">
+                    <div class="address-block">
+                      <h3>{{resname}}</h3>
+                      <p>{{resstate}}</p>
+                    </div>
+                    <p class="description">{{resprofile_bio}}.</p>
+                    <ul>
+                      <li>
+                        <h4>Letter</h4>
+                        <img [src]="ressanta_letter" alt="">
+                      </li>
+                      <li>
+                        <h4>Family Information</h4>
+                        <p> Boys, Girls,Both</p> 
+                      </li>
+                      <li>
+                        <h4>Budget</h4>
+                        <p>{{resbudget}}</p>
+                      </li>
+                      <li>
+                        <h4>Organization Preferences</h4>
+                        <p>{{resorganisation}}</p>
+                      </li>
+                      <li>
+                        <h4>Amazon Wishlist link</h4>
+                        <p>{{resamazon_wishlist}}</p>
+                      </li>
+                      <li>
+                        <h4>Facebook link</h4>
+                        <p>{{resfacebook_link}}</p>
+                      </li>
+                    </ul>
+                  </div>
+                
+                </div>
+                
+              </ng-scrollbar>
+              <div class="btn-transperent-wrapper two_btns">
+                <!-- <button class="btn orange-button btn_large" (click)="approveFamily()">Remove Account</button>  -->
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <ngx-loading *ngIf="signedUpFamilies.length" [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+    </div>
+  </div>
+</div>

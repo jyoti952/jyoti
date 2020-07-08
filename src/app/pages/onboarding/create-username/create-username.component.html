@@ -1,0 +1,104 @@
+<div class="full-page-wrapper">
+    <div class="after-login-container">
+      <div class="content" >
+        <app-onboarding-elf-nav></app-onboarding-elf-nav>
+        <h2>Upload profile photo or use default for your profile.</h2>
+  
+  
+        <form name="createUsername"  *ngIf="loadingComp">
+          <div class="form-group">
+            <label>Profile Photo*</label>
+            <div class="upload-image"  *ngIf="edited"  >
+              <div class="image-block">
+                <img src="assets/images/camera.svg" />
+                <a (click)="clickEvent()" [ngClass]="status ? ' btn dark-orange-button rounded-button uploaded' : ' btn dark-orange-button rounded-button'" title="Upload Photo">Upload Photo
+                  <span [ngClass]="status ? '  ' : ''"></span>
+                  <input type="file" (change)="onSelectFile($event)" accept="image/*">
+                </a>
+  
+              </div>
+  
+  
+              <div class="image-block default_img">
+                <img src="assets/images/default-pic.svg" />
+                <a href="JavaScript:void(0);" (click)="clickEvent()" [ngClass]="status ? 'btn dark-orange-button rounded-button' : ' btn dark-orange-button  rounded-button uploaded '" title="Use Default" (click)="default()">Use Default
+                  <span [ngClass]="status ? '' : 'white_tick'"></span>
+                </a>
+
+             
+              </div>
+            </div>
+
+          </div>
+  
+  
+          <div class="modal" id="myModal">
+            <div class="modal-dialog">
+  
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+  
+                  <h4 class="modal-title">
+                    <!-- <div>
+                      <button (click)="cropping.zoomIn()" ly-button appearance="icon">
+                        <ly-icon>zoom_in</ly-icon>
+                      </button>&nbsp;
+                      <button (click)="cropping.zoomOut()" ly-button appearance="icon">
+                        <ly-icon>zoom_out</ly-icon>
+                      </button>&nbsp;
+                      <button (click)="cropping.center()" ly-button appearance="icon">
+                        <ly-icon>filter_center_focus</ly-icon>
+                      </button>&nbsp;
+                      <button (click)="cropping.rotate(-90)" ly-button appearance="icon">
+                        <ly-icon>rotate_90_degrees_ccw</ly-icon>
+                      </button>
+                      <button (click)="cropping.fit()" ly-button>Fit</button>
+                      <button (click)="cropping.fitToScreen()" ly-button>Fit to screen</button>
+                      <button (click)="cropping.setScale(1)" ly-button>1:1</button><br>
+                    </div> -->
+                  </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="uploaded-image-block"  >
+                  <!-- <ly-img-cropper [withClass]="classes.cropping" #cropping [config]="myConfig" (cropped)="onCropped($event)">
+                  </ly-img-cropper> -->
+             
+                  <img  id="blah" width="50%">
+
+  </div>
+                </div>
+  
+                <div class="modal-footer">
+                  <button data-dismiss="modal" ly-button appearance="icon" (click)="cancelmodal()">Cancel</button>
+                  <button (click)="toggleShow()" data-dismiss="modal" ly-button appearance="icon">Save</button>
+                  <br>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+  
+          <div class="form-group" [hidden]="edited1"  >
+            <div class="uploaded-image-block">
+  
+              <img id="image1" width="50%">
+              <a class="remove_btn" title="Remove" (click)="remove()">Remove</a>
+  
+            </div>
+          </div>
+        
+  
+  
+          <div class="btn-block two-button">
+            <a [routerLink]="['/onboarding/elf']" class="btn prev-arrow-button" title="Previous" >Previous</a>
+            <a [routerLink]="['/onboarding/elf/anonymous-family']" class="btn next-arrow-button" title="Next" (click)="elfphoto()" >Next</a>
+          </div>
+        </form>
+      </div>
+  
+      <app-onboarding-footer></app-onboarding-footer>
+  
+    </div>
+  </div>

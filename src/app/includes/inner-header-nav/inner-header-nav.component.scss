@@ -1,0 +1,63 @@
+@import "color";
+@import "break-points";
+@import "mixins";
+
+.inner-header-nav {
+  margin-left: 96px;
+  @include bp(lg-max){
+    margin-left: 25px;
+  }
+  ul {
+    display: flex;
+    li {
+      margin-right: 34px;
+      &:last-child {
+        margin-right: 0;
+      }
+      @include bp(lg-max){
+        margin-right: 25px;
+      }
+      a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        font-size: 12px;
+        line-height: 1;
+        color: $grey_shade_9;
+        font-family: "circularbold";
+        i {
+          display: inline-block;
+          height: 22px;
+          width: 22px;
+          position: relative;
+          margin-right: 7px;
+          img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            text-align: center;
+            margin: 0 auto;
+            @include transition(all 0.3s);
+            &.active_img {
+              opacity: 0;
+            }
+          }
+        }
+        &.active,
+        &:hover {
+          color: $black_shade_5;
+          i {
+            img {
+              opacity: 0;
+              &.active_img {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

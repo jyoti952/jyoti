@@ -1,0 +1,55 @@
+@import "color";
+
+::ng-deep .flagged-user-popup-open {
+  overflow: hidden;
+  app-flagged-user-popup {
+    .modal-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-wrapper {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.modal-wrapper {
+  .modal-sm {
+    .modal-header {
+      margin: 0 -24px 1px;
+      padding: 0 24px 31px;
+      border-bottom: solid 1px $grey_shade_13;
+      h2 {
+        + p {
+          text-align: center;
+          margin: 30px 0 0;
+          font-size: 20px;
+          line-height: 1.2;
+        }
+      }
+    }
+    .orange-button {
+      &.disable {
+        pointer-events: none;
+        border-color: $grey_shade_9;
+        background-color: $grey_shade_9;
+      }
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 100px;
+  label {
+    margin-bottom: 16px;
+  }
+}
+
+textarea {
+  min-height: 284px;
+}
+
+.custom-radio-btn {
+  margin-bottom: 30px;
+}

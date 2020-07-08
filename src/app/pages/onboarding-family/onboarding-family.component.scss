@@ -1,0 +1,23 @@
+@import "color";
+@import "fonts";
+
+.after-login-container {
+  .content {
+    .code-of-conduct {
+      p {
+        color: $grey;
+        font-family: "circularbook";
+        line-height: 1.25;
+        a {
+          color: $orange;
+        }
+      }
+      .form-group {
+        .form-control {
+          font-family: "circularbook";
+          color: $black_shade_6;
+        }
+      }
+    }
+  }
+}

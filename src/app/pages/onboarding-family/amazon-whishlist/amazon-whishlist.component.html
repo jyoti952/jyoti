@@ -1,0 +1,36 @@
+<div class="full-page-wrapper">
+	<div class="after-login-container">
+		<div class="content">
+			<app-onboarding-family-nav></app-onboarding-family-nav>
+			<h2>Provide Amazon Wishlist link</h2>
+			<form name="amazonWhishlist" [formGroup]="amazonWhishlist">
+				<div class="form-group"
+					[ngClass]="{'has-error':amazonWhishlist.get('amazonLink').invalid && amazonWhishlist.get('amazonLink').touched}">
+					<label>Enter your amazon wishlist link*</label>
+					<input type="url" class="form-control small-input link-input" placeholder="Example link"
+						formControlName="amazonLink"  pattern="https?://.+" required>
+					<span class="error-msg"
+						*ngIf="amazonWhishlist.get('amazonLink').invalid && amazonWhishlist.get('amazonLink').touched">
+						<span *ngIf="amazonWhishlist.controls.amazonLink.errors != undefined ">
+							This field is required
+						</span>
+						<span *ngIf="amazonWhishlist.controls.amazonLink.errors&&amazonWhishlist.controls.amazonLink.errors.url != undefined ">
+							{{amazonWhishlist.controls.amazonLink.errors.url.message}}
+						</span>
+					</span>
+				</div>
+				<div class="btn-block two-button">
+					<a [routerLink]="['/onboarding/family/profile-information']" class="btn prev-arrow-button"
+						title="Previous">Previous</a>
+					<!-- <a [routerLink]="['/onboarding/family/family-info']" class="btn next-arrow-button" title="Next"
+						[ngClass]="{'disable': amazonWhishlist.invalid }"
+						 (click)="onSubmit(amazonWhishlist.value)">Next</a> -->
+						 <a [routerLink]="['/onboarding/family/family-info']" class="btn next-arrow-button" title="Next"
+						[ngClass]="{'disable': amazonWhishlist.invalid }"
+			         	(click)="onSubmit()">Next</a>
+				</div>
+			</form>
+		</div>
+		<app-onboarding-footer></app-onboarding-footer>
+	</div>
+</div>

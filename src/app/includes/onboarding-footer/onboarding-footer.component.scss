@@ -1,0 +1,21 @@
+@import "color";
+@import "break-points";
+
+.onboarding_footer {
+  position: fixed;
+  bottom: 50px;
+  left: auto;
+  right: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  @include bp(md-max){
+    position: absolute;
+  }
+  a {
+    font-size: 16px;
+    line-height: 20px;
+    color: $orange_shade_1;
+    font-family: "circularbold";
+  }
+}

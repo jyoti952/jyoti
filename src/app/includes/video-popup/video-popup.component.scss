@@ -1,0 +1,14 @@
+::ng-deep .video-popup-open {
+  overflow: hidden;
+  app-video-popup {
+    .modal-overlay {
+      opacity: 1;
+      visibility: visible;
+      background: rgba(0, 0, 0, 0.37);
+    }
+    .modal-wrapper {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

@@ -1,0 +1,161 @@
+@import "color";
+
+.family_left_content_outer {
+  .title_block {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      margin-bottom: 0;
+    }
+    h4 {
+      font-size: 20px;
+      margin-bottom: 0;
+    }
+    .see_all {
+      font-size: 12px;
+      line-height: 1.33;
+      font-family: "circularmedium";
+      text-decoration: none;
+      color: #babdca;
+      &:hover {
+        text-decoration: none;
+        color: $orange;
+      }
+    }
+  }
+}
+
+::ng-deep .inner-header-nav,
+.inner-header-nav {
+  display: none;
+}
+
+.ngx-pagination .disabled {
+  padding: -0.8125rem 0.625rem !important;
+}
+
+.my-pagination {
+  text-align: center;
+  position: relative;
+  top: 20px;
+}
+
+.ngx-pagination a {
+  padding: 0.115rem 0.425rem !important;
+}
+
+.ngx-pagination .current {
+  background: #cb5b58 !important;
+}
+
+::ng-deep .flagged-user-popup-open {
+  overflow: hidden;
+  app-flagged-user-popup {
+    .modal-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-wrapper {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.modal-wrapper {
+  .modal-sm {
+    .modal-header {
+      margin: 0 -24px 1px;
+      padding: 0 24px 31px;
+      border-bottom: solid 1px $grey_shade_13;
+      h2 {
+        + p {
+          text-align: center;
+          margin: 30px 0 0;
+          font-size: 20px;
+          line-height: 1.2;
+        }
+      }
+    }
+    .orange-button {
+      &.disable {
+        pointer-events: none;
+        border-color: $grey_shade_9;
+        background-color: $grey_shade_9;
+      }
+    }
+  }
+}
+
+// .form-group {
+//   margin-bottom: 100px;
+//   label {
+//     margin-bottom: 16px;
+//   }
+// }
+
+.form-group {
+  margin-bottom: 40px;
+  label {
+    margin-bottom: 16px;
+  }
+}
+
+textarea {
+  min-height: 284px;
+}
+
+.custom-radio-btn {
+  margin-bottom: 30px;
+}
+
+.modal-overlay {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.modal-wrapper {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#flagPopup {
+  display: none;
+}
+
+.cursor_pointer {
+  cursor: pointer;
+}
+
+.page-overlay {
+  background: rgba(0, 0, 0, 0.84);
+  position: fixed;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+.family-profile-detail.sidebar.filter-sidebar {
+  width: 544px;
+  right: 0px;
+}
+
+.recordschecks {
+  padding-left: 20px;
+}
+.recordschecks h1 {
+  color: gray;
+}

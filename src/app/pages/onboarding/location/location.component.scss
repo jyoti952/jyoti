@@ -1,0 +1,17 @@
+.location-group {
+  margin-bottom: 47px;
+  label {
+    margin-bottom: 20px;
+  }
+  .form-group {
+    margin-bottom: 25px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &.has-error {
+      .error-msg {
+        bottom: -15px;
+      }
+    }
+  }
+}

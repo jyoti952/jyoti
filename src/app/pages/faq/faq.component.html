@@ -1,0 +1,186 @@
+<app-header></app-header>
+
+<div class="full-page-wrapper purple-bg">
+  <div class="container">
+    <div class="inner-page-container no-bottom-spacing">
+      <h1>How can we help you?</h1>
+
+       <!-- <div class="faq-search-wrapper">
+        <div class="form-group">
+          <input type="text" class="form-control"   [(ngModel)]="searchValue"  placeholder="Start typing your search…">
+          <button class="search-btn"><img src="assets/images/rounded-search.svg" alt=""></button>
+        </div>
+      </div>  -->
+
+      <div class="faq_options">
+        <p>Choose an option from below</p>
+        <ul>
+          <li>
+            <a href="javascript:void(0)" class="option_outer" (click)="gotoGeneralFaq()">
+              <i><img src="assets/images/general-faq.svg" alt=""></i>
+              <h3>General FAQ’s</h3>
+              <!-- <p>Vulputate faucibus est varius ullamcorper at a mi eget.</p> -->
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="option_outer" (click)="gotoElvesFaq()">
+              <i><img src="assets/images/elves.svg" alt=""></i>
+              <h3>Elves</h3>
+              <!-- <p>Vulputate faucibus est varius ullamcorper at a mi eget.</p> -->
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="option_outer" (click)="gotoFamilyFaq()">
+              <i><img src="assets/images/family-icon.svg" alt=""></i>
+              <h3>Families</h3>
+              <!-- <p>Vulputate faucibus est varius ullamcorper at a mi eget.</p> -->
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <h2 id="general_faq">General FAQ’s</h2>
+      <accordion [closeOthers]="true">
+        <accordion-group>
+          <accordion-heading >Where did the letters come from?</accordion-heading>
+          See our origin story linked <a [routerLink]="['/origin-story']">here</a>.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>When is the workshop opening this year?</accordion-heading>
+          We are still building the new workshop and anticipate to be open at the beginning of November! Keep an eye on our social media feeds or sign up for our email list <a [routerLink]="['/signup/elf']">here</a>.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Do I need to celebrate Christmas to be a part of the program?</accordion-heading>
+          Nope! While we love all of our elves who practice their chosen religion, we are a non-denominational, non-partisan organization.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>How can I donate to Miracle?</accordion-heading>
+          You can donate any amount on our website <a href="https://secure.causevox.com/pay?url=miracleon22ndstreetdonate.causevox.com" target="_blank">here</a>.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Who runs the organization?</accordion-heading>
+          The organization is run by a Board of Volunteer elves who have been involved from the beginning.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Is this a non-profit?</accordion-heading>
+          Yes. We are a registered 501 (c)(3) organization. Our EIN number is 83-0601813
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Who can I reach out to regarding press?</accordion-heading>
+          OMG we’re famous! You can email us at <a href="mailto:miracleon22ndstreet@gmail.com">miracleon22ndstreet@gmail.com</a>
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Who is writing these letters?</accordion-heading>
+          The letters are written by families in need. Sometimes by the parents, and sometimes by the kids themselves.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Does every letter get a response?</accordion-heading>
+          We do our absolute best to fulfill every single letter, but unfortunately sometimes one or two slip through the cracks. That’s where having lots of volunteer elves comes in! To sign up to be an elf, please email us at <a href="mailto:miracleon22ndstreet@gmail.com">miracleon22ndstreet@gmail.com</a>
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Is this tax deductible?</accordion-heading>
+          Yes!
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>When does the workshop close?</accordion-heading>
+          To meet shipping deadlines we close the workshop by December 15th.
+        </accordion-group>
+      </accordion>
+
+      <h2 id="elves_faq">Elves FAQ’s</h2>
+      <accordion [closeOthers]="true">
+        <accordion-group>
+          <accordion-heading>Is there a list of guidelines to help me figure out my donation?</accordion-heading>
+          Typically the parents will detail the needs of the family in the letter! This year, with our brand new app, if you choose to chat with the families you can ask those questions directly.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Who approves the letters?</accordion-heading>
+          We have a dedicated volunteer elves who will vet every letter that doesn’t come through an approved organization. If they come through an organization, their team vets the letters.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>I can no longer fulfill my letter, how do I cancel it?</accordion-heading>
+          Please let us know immediately if you can no longer fulfill your letter at <a href="mailto:miracleon22ndstreet@gmail.com">miracleon22ndstreet@gmail.com</a>
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Can I personalize the gift?</accordion-heading>
+          Sure! Elves can choose to personalize it with unique wrapping, a note, anything that you’re comfortable with.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Does it have to be from Santa Claus or can it be from me?</accordion-heading>
+          It’s up to you! Whatever you’re comfortable with. Many people like the spirit of anonymity, but it is also nice to know it’s from people who care.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>How much should I spend?</accordion-heading>
+          Whatever you are able to! The asks in the letters range from $25-$325.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Can I send money?</accordion-heading>
+          We recommend gift cards rather than cash or checks. However, if you would like to donate money, Miracle admin takes lots of work! We are committed to fulfilling the wishes of all of our families. When we don’t have enough elves, we fulfill the letters ourselves. If you’d like to donate directly to Miracle, you can do so <a href="https://secure.causevox.com/pay?url=miracleon22ndstreetdonate.causevox.com" target="_blank">here</a>.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Should I wrap the gifts?</accordion-heading>
+          New this year, we have a partnership with <a href="https://wrappily.com/" target="_blank">Wrappily</a>, makers of adorably chic wrapping paper printed on 100% recyclable and compostable newsprint. We will have more information soon about how using Wrappily to wrap your gifts can help to support Miracle on 22nd Street.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Can I put more than one gift in the box?</accordion-heading>
+          Sure! That’s great for shipping purposes.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Will I know if my package gets there?</accordion-heading>
+          Sometimes. We’ve found that some elves put tracking on their packages, and some don’t.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>What is the last day I can send a package?</accordion-heading>
+          <ul class="rounded_list white">
+            <li>Dec. 10: Last day to ship via FedEx SmartPost.</li>
+            <li>Dec. 17: Last day to ship via FedEx Ground and FedEx Home Delivery </li>
+            <li>Dec. 19: Last day to ship via FedEx Express Saver.</li>
+            <li>Dec. 20: Last day to ship via FedEx 2Day and FedEx 2Day A.M.</li>
+            <li>Dec. 21: Last day to ship via FedEx Standard Overnight, FedEx Priority Overnight, and FedEx First Overnight.</li>
+            <li>Dec. 25: Last day to ship via FedEx SameDay City Direct, FedEx SameDay City Priority, and FedEx SameDay.</li>
+          </ul>
+          Shipping deadlines vary for packages headed to Puerto Rico and Canada, Mexico, and other international destinations.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Is there a limit to the number of families/Letters?</accordion-heading>
+          There is no limit to the number of families you can take on, but please be sure you can fulfill all of the asks!
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Do I have to buy everything that the family asked for?</accordion-heading>
+          That would be best, but not required. Most important is to please make sure you fulfill something for each and everyone of the kids listed in the letter. (Can you imagine if your sibling got something and you didn’t?)
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Can i send more than one gift?</accordion-heading>
+          Sure! We have elves that sometimes go over-the-top - but any amount is welcome.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>Who are the organizations you are teaming up with?</accordion-heading>
+          <p>NYC Together</p>
+          <p>Poverty Alleviation Charities</p>
+          <p>Stonewall Foundation</p>
+          <p>And more to come!</p>
+        </accordion-group>
+      </accordion>
+
+      <h2 id="families_faq">Families FAQ’s</h2>
+      <accordion [closeOthers]="true">
+        <accordion-group>
+          <accordion-heading>Is there an age limit on Miracle?</accordion-heading>
+          We do not enforce an age limit on the letters, but we have found that the Elves prefer to help families with children.
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>An Elf promised to help my family, but didn’t come through.</accordion-heading>
+          Ugh, sorry about that. Naughty Elf! Email us at <a href="mailto:miracleon22ndstreet@gmail.com">miracleon22ndstreet@gmail.com</a>
+        </accordion-group>
+        <accordion-group>
+          <accordion-heading>My Elf is not responding! What do I do?</accordion-heading>
+          Your elf is probably just busy! If it’s getting close to December 15, please let us know at <a href="mailto:miracleon22ndstreet@gmail.com">miracleon22ndstreet@gmail.com</a>
+        </accordion-group>
+      </accordion>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+</div>

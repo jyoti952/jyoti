@@ -1,0 +1,20 @@
+<div class="progress-bar-wrapper">
+
+  <div class="top_right_illustration"><img src="assets/images/onboarding-top.svg" alt=""></div>
+  <div class="bottom_left_illustration"><img src="assets/images/onboarding.svg" alt=""></div>
+
+  <a   class="logo" title="logo">
+    <img   src="assets/images/logo.svg" />
+  </a>
+
+  <ul class="progress-bar">
+    <li *ngFor="let menuItems of onboardingFamilyMenuItems" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a [routerLink]=[menuItems.link] [ngClass]="{'disable-anchor' :event ? 'none' : null }" >
+        <span>
+          <em></em>
+        </span>
+        <p>{{menuItems.label}}</p>
+      </a>
+    </li>
+  </ul>
+</div>

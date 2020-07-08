@@ -1,0 +1,82 @@
+@import "color";
+@import "break-points";
+
+.full-page-wrapper {
+  background: $primary;
+}
+
+.content-wrapper {
+  .left-container {
+    padding-right: 25px;
+    @include bp(smd-max) {
+      padding-right: 0;
+      width: 100% !important;
+    }
+    @include bp(xlg-max) {
+      min-height: inherit;
+      width: 49%;
+    }
+    .landing-page-container {
+      padding-top: 120px;
+      width: 100%;
+      @include bp(xlg-max) {
+        padding-top: 180px;
+      }
+      @include bp(lg-max) {
+        padding-top: 160px;
+      }
+      @include bp(md-max) {
+        padding-top: 140px;
+      }
+      @include bp(smd-max) {
+        max-width: 100%;
+      }
+      h1 {
+        color: $white;
+        margin-bottom: 60px;
+      }
+      .orange-button {
+        font-family: "circularbook";
+        display: inline-flex;
+        width: auto;
+        padding: 0 32px;
+        margin: 0;
+        @include bp(xxs-max) {
+          padding: 0 12px;
+          width: 100%;
+        }
+            span {
+              margin: 0 0 0 10px;
+            }
+
+          }
+
+      };
+    }
+}
+
+.form-group {
+  margin-bottom: 24px;
+  .form-control {
+    background: transparent;
+    border-radius: 6px;
+    border: solid 1px #f1f1f1;
+    padding: 14px 20px;
+    color: $white;
+  }
+}
+
+.two_column {
+  display: flex;
+  justify-content: space-between;
+  .form-group {
+    width: 48%;
+    @include bp(smd-max) {
+        width: 100%;
+    }
+  }
+}
+
+form {
+  padding-top: 0;
+}

@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="full-page-wrapper purple-bg">
+  <div class="container">
+    <div class="inner-page-container no-bottom-spacing">
+      <h1>Press</h1>
+
+      <ul class="press_listing">
+        <li *ngFor="let press of pressListing">
+          <a class="press_outer" href={{press.link}} target="_blank">
+            <div class="press_img">
+              <img src={{press.img}} alt="">
+            </div>
+            <div class="press_content">
+              <h3>{{press.text}}<span class="tag">{{press.tag}}</span></h3>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+</div>

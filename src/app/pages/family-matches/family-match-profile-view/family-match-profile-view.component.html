@@ -1,0 +1,153 @@
+<app-inner-header></app-inner-header>
+<app-family-match-letter-view-popup></app-family-match-letter-view-popup>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>My Matches</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+
+        <div class="family_left_content_outer">
+          <div class="user_info_outer">
+            <i class="dp"><img src="{{images}}" alt=""></i>
+            <div class="user_info">
+              <h4>{{user}}</h4>
+              <p>{{locations}}</p>
+            </div>
+          </div>
+          <ul class="match_conversations">
+            <li>
+              <i><img src="assets/images/heart-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_matches}}</span>
+              <p>Matches</p>
+            </li>
+            <li>
+              <i><img src="assets/images/chat-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_conversations}}</span>
+              <p>Conversations</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="family_left_content_outer">
+          <h4>New Family Matches</h4>
+          <ul class="matched_familes">
+            <li *ngFor="let family of elfmatchdata">
+              <a href="javascript:void(0)" class="user_with_status">
+                <i><img src={{family.photo}} alt=""></i>
+                <em class="status" *ngIf='family.status'></em>
+              </a>
+            </li>
+            <!-- <li>+24</li> -->
+          </ul>
+
+          <h4>Conversations</h4>
+          <!-- <ul class="conversations_list">
+
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+
+          </ul> -->
+        </div>
+
+      </div>
+
+      <div class="col10">
+        <div class="static_position">
+          <div class="family-profile-detail sidebar">
+            <div class="relative_position">
+              <ng-scrollbar>
+                <div class="sidebar-content">
+                  <div class="profile-image" (click)="openLetterProfileViewPopup()">
+                    <span class="cyan_strip">Miracle Families</span>
+                    <img src="{{familyData.photo}}" alt="">
+                  </div>
+                  <div class="profile-content">
+                    <div class="address-block">
+                      <h3>{{familyData.name}}</h3>
+                      <p>{{familyData.state}}</p>
+                    </div>
+                    <p class="description">{{familyData.profile_bio}}</p>
+                    <ul>
+                      <li>
+                        <h4>Letter</h4>
+                        <img src="{{familyData.santa_letter}}" alt="">
+                      </li>
+                      <li>
+                        <h4>Amazon Wishlist link</h4>
+                        <p>{{familyData.amazon_wishlist}}</p>
+                      </li>
+                      <li>
+                        <h4>Family Information</h4>
+                        <p>{{familyData.number_of_boys}} Boys,{{familyData.number_of_girls}} Girls</p>
+                      </li>
+                      <li>
+                        <h4>Budget (Per Child)</h4>
+                        <p>{{familyData.budget}}</p>
+                      </li>
+                      <li>
+                        <h4>Organization Preferences</h4>
+                        <p>{{familyData.organisation}}</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </ng-scrollbar>
+              <!-- <div class="btn-transperent-wrapper two_btns">
+                <button class="btn grey-button">Decline</button>
+                <button class="btn orange-button">Approve</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- popup start -->
+
+<div *ngIf="popup">
+<div class="modal-overlay" (click)="closeLetterProfileViewPopup()"></div>
+<div class="modal-wrapper">
+  <div class="modal modal-md">
+    <div class="modal-body">
+      <button class="close-modal" (click)="closeLetterProfileViewPopup()" title="close">
+        <img src="assets/images/close.svg" alt="">
+      </button>
+      <div class="profile-image">
+        <img src="{{familyData.santa_letter}}" alt=""> 
+      </div>
+      <div class="profile-detail">
+        <div class="user_with_status">
+           <i><img src="{{profile}}" alt=""></i> -
+        </div>
+        <div class="address-block">
+          <h3>{{users}}</h3>
+          <p>{{location}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+</div>
+
+<!-- popup end -->

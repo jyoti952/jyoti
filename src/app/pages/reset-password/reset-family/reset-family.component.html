@@ -1,0 +1,63 @@
+<div class="full-page-wrapper">
+    <div class="content-wrapper login-signup-container">
+      <div class="left-container">
+        <div class="login-signup-content">
+          <a [routerLink]="['/login']" class="return-link"><img src="assets/images/rounded-left-arrow.svg" alt=""></a>
+          <a href="#" class="logo">
+            <img src="assets/images/logo-orange.svg" />
+          </a>
+          <div class="inner-content">
+            <h2><a [routerLink]="['/login']"><img src="assets/images/left-arrow.svg" alt=""></a>Reset password</h2>
+            <form name="forgetPassword" [formGroup]="forgetPassword">
+              <div class="form-group"
+                [ngClass]="{'has-error':forgetPassword.get('password').touched && forgetPassword.get('password').invalid}">
+                <label>New Password<sup>*</sup></label>
+                <input type="password" class="form-control" (cut)="$event.preventDefault()" (copy)="$event.preventDefault()" (paste)="$event.preventDefault()" placeholder="New Password" formControlName="password">
+                <span class="error-msg"
+                  *ngIf="forgetPassword.get('password').touched && forgetPassword.get('password').invalid">
+                  <span *ngIf="forgetPassword.get('password').errors.required">
+                    This field is required
+                  </span>
+                  <span *ngIf="forgetPassword.get('password').errors.pattern">
+                    Please set a password which has atleast 1 uppercase and 1 lowercase and 1 digit
+                  </span>
+                  <span *ngIf="forgetPassword.get('password').errors.maxlength">
+                    Password should be between 6-16(Max limit) Characters
+                  </span>
+                  <span *ngIf="forgetPassword.get('password').errors.minlength">
+                    Password should be between 6-16(Max limit) Characters
+                  </span>
+                </span>
+              </div>
+              <div class="form-group"
+              [ngClass]="{'has-error':forgetPassword.get('password_cofirmation').touched || (forgetPassword.getError('mismatch') && forgetPassword.get('password_cofirmation').value != '')}">
+                <label>Confirm Password<sup>*</sup></label>
+                <input type="password" class="form-control" (cut)="$event.preventDefault()" (copy)="$event.preventDefault()" (paste)="$event.preventDefault()" placeholder="Confirm Password"
+                  formControlName="password_cofirmation">
+                <span class="error-msg"
+                  *ngIf="forgetPassword.get('password_cofirmation').touched && forgetPassword.get('password_cofirmation').invalid && forgetPassword.get('password_cofirmation').errors">
+                  <span *ngIf="forgetPassword.get('password_cofirmation').errors.required">
+                    This field is required
+                  </span>
+                  <!-- <span *ngIf="forgetPassword.getError('mismatch')">
+                      Password doesn't match 
+                    </span> -->
+                </span>
+                <span class="error-msg" *ngIf="forgetPassword.getError('mismatch') && forgetPassword.get('password_cofirmation').value != ''">
+                    Password doesn't match 
+                 </span>
+              </div>
+            </form>
+            <!-- <a  class="dark-orange-button disable" title="Send resend link" [ngClass]="{'disable': forgetPassword.invalid}"
+              (click)="onSubmit(forgetPassword.value)">RESET PASSWORD</a> -->
+              <a  class="dark-orange-button disable" title="Send resend link" [ngClass]="{'disable': forgetPassword.invalid}"
+              (click)="onSubmit()">RESET PASSWORD</a>
+          </div>
+        </div>
+      </div>
+      <div class="right-container" style="background-image: url('assets/images/banner.svg')">
+      </div>
+    </div>
+  </div>
+
+

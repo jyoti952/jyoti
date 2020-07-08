@@ -1,0 +1,24 @@
+@import "break-points";
+
+.verify-code {
+  margin-bottom: 61px;
+  display: inline-block;
+  @include bp(md-max) {
+    margin-bottom: 50px;
+  }
+  @include bp(sm-max) {
+    margin-bottom: 30px;
+    width: 125px;
+  }
+}
+.content-wrapper {
+  .left-container {
+    &.login-signup-container {
+      .inner-content {
+        &.verify-email {
+          padding-top: 45px;
+        }
+      }
+    }
+  }
+}

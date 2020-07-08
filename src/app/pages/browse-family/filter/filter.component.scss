@@ -1,0 +1,14 @@
+::ng-deep .filter-sidebar-open {
+  overflow: hidden;
+  app-filter {
+    .page-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+    .family-profile-detail {
+      &.sidebar {
+        right: 0;
+      }
+    }
+  }
+}

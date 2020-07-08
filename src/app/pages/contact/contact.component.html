@@ -1,0 +1,175 @@
+<app-header></app-header>
+
+<!-- <div class="full-page-wrapper purple-bg">
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="left-container">
+        <div class="landing-page-container no-bottom-spacing">
+          <div class="sqs-block-content">
+            <h1 style="white-space:pre-wrap;">Become an elf and help a family!</h1>
+            <h2  style="white-space:pre-wrap; color: #B82E26;" *ngIf="thanks_msg">Thank you for being a part of the magic! One
+                of our elves will get right back to you with a santa letter.</h2>
+            <h2 *ngIf="getLetter" style="white-space:pre-wrap;color: #fff;">We are in need of elves!</h2>
+            <p *ngIf="getLetter" class="" style="white-space:pre-wrap;">Would you like to fulfill a letter for a family? Fill out the form
+              below. <strong>If you are a family in need, please do not reach out to us here.</strong></p>
+
+            <h4 style="white-space:pre-wrap;color: #fff;" *ngIf="thanks_msg">If you are a family in need, do not sign up
+              here. We will alert of openings on the Facebook Group shortly.</h4>
+          </div>
+          <form [formGroup]="contatForm">
+            <div *ngIf="getLetter">
+              <div class="form-group"
+                [ngClass]="{'has-error':contatForm.get('first_name').touched && contatForm.get('first_name').invalid}">
+                <input type="text" class="form-control" formControlName="first_name" placeholder="First Name*">
+                <span class="error-msg"
+                  *ngIf="contatForm.get('first_name').touched && contatForm.get('first_name').invalid">
+                  <span *ngIf="contatForm.get('first_name').errors.required">
+                    This field is required
+                  </span>
+                  <span *ngIf="contatForm.get('first_name').errors.pattern">
+                    Only characters are allowed
+                  </span>
+                </span>
+              </div>
+              <div class="form-group"
+                [ngClass]="{'has-error':contatForm.get('last_name').touched && contatForm.get('last_name').invalid}">
+                <input type="text" class="form-control" formControlName="last_name" placeholder="Last Name*">
+                <span class="error-msg"
+                  *ngIf="contatForm.get('last_name').touched && contatForm.get('last_name').invalid">
+                  <span *ngIf="contatForm.get('last_name').errors.required">
+                    This field is required
+                  </span>
+                  <span *ngIf="contatForm.get('last_name').errors.pattern">
+                    Only characters are allowed
+                  </span>
+                </span>
+              </div>
+              <div class="form-group"
+                [ngClass]="{'has-error':contatForm.get('email').touched && contatForm.get('email').invalid}">
+                <input type="email" class="form-control" formControlName="email" placeholder="Email*">
+                <span class="error-msg" *ngIf="contatForm.get('email').touched && contatForm.get('email').invalid">
+                  <span *ngIf="contatForm.get('email').errors.required">
+                    This field is required
+                  </span>
+                  <span *ngIf="contatForm.get('email').errors.pattern">
+                    Please enter a valid email id
+                  </span>
+                </span>
+              </div>
+              <!-- <div class="form-group">
+                <input type="number" class="form-control" formControlName="phone_number" placeholder="Phone Number">
+              </div> -->
+<!--
+              <div class="two_column">
+                <div class="form-group">
+                  <textarea class="form-control" placeholder="Message" formControlName="message"></textarea>
+                </div>
+              </div> -->
+
+              <!-- <button class="orange-button" title="Submit" (click)="onSubmit(contatForm.value)">
+                GET ME A LETTER!<span><img alt="" src="assets/images/right-arrow.svg"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="right-container" style="background-image: url('assets/images/contact-illustration.svg')">
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div> -->
+
+<!-- second form -->
+<div class="full-page-wrapper purple-bg">
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="left-container">
+        <div class="landing-page-container no-bottom-spacing">
+          <h1 style="white-space:pre-wrap;color: #fff;">Contact Us</h1>
+          <div class="sqs-block-content">
+            <h2  style="white-space:pre-wrap;color: #fff;" >To contact us for press, partnerships or general inquiries fill
+              out this form</h2>
+            <p class="" style="white-space:pre-wrap;" *ngIf="thanks_contact">Thank you for visiting Miracle on 22nd Street! This is our
+              contact page for press, partnerships or general inquiries</p>
+            <p style="white-space:pre-wrap;">Are you a family in need? Please join the Facebook Group <a style ="color: #fff;"
+              href="https://www.facebook.com/groups/miracleon22ndstreet">here</a>
+              and we will alert you. Do NOT submit your letters here, they will NOT be answered on this
+              form</p>
+          </div>
+          <form [formGroup]="newcontatForm">
+            <div *ngIf ="contactSubmit">
+              <div class="form-group"
+                [ngClass]="{'has-error':newcontatForm.get('first_name').touched && newcontatForm.get('first_name').invalid}">
+                <input type="text" class="form-control" formControlName="first_name" placeholder="First Name*">
+                <span class="error-msg"
+                  *ngIf="newcontatForm.get('first_name').touched && newcontatForm.get('first_name').invalid">
+                  <span *ngIf="newcontatForm.get('first_name').errors.required">
+                    This field is required
+                  </span>
+                  <span *ngIf="newcontatForm.get('first_name').errors.pattern">
+                    Only characters are allowed
+                  </span>
+                </span>
+              </div>
+              <div class="form-group"
+                [ngClass]="{'has-error':newcontatForm.get('last_name').touched && newcontatForm.get('last_name').invalid}">
+                <input type="text" class="form-control" formControlName="last_name" placeholder="Last Name">
+                <span class="error-msg"
+                  *ngIf="newcontatForm.get('last_name').touched && newcontatForm.get('last_name').invalid">
+                  <!-- <span *ngIf="newcontatForm.get('last_name').errors.required">
+                    This field is required
+                  </span> -->
+                  <span *ngIf="newcontatForm.get('last_name').errors.pattern">
+                    Only characters are allowed
+                  </span>
+                </span>
+              </div>
+              <div class="form-group"
+                [ngClass]="{'has-error':newcontatForm.get('email').touched && newcontatForm.get('email').invalid}">
+                <input type="email" class="form-control" formControlName="email" placeholder="Email*">
+                <span class="error-msg"
+                  *ngIf="newcontatForm.get('email').touched && newcontatForm.get('email').invalid">
+                  <span *ngIf="newcontatForm.get('email').errors.required">
+                    This field is required
+                  </span>
+                  <span *ngIf="newcontatForm.get('email').errors.pattern">
+                    Please enter a valid email id
+                  </span>
+                </span>
+              </div>
+              <!-- <div class="form-group">
+                <input type="number" class="form-control" formControlName="phone_number" placeholder="Phone Number">
+              </div> -->
+              <div class="two_column">
+                  <div class="form-group"  [ngClass]="{'has-error':newcontatForm.get('message').touched && newcontatForm.get('message').invalid}">
+                    <textarea class="form-control" placeholder="Message*" formControlName="message"></textarea>
+                    <span class="error-msg"
+                  *ngIf="newcontatForm.get('message').touched && newcontatForm.get('message').invalid">
+                  <span *ngIf="newcontatForm.get('message').errors.required">
+                    This field is required
+                  </span>
+                  <span *ngIf="newcontatForm.get('message').errors.minLength">
+                      Mix characters should be 3
+                  </span>
+                  <span *ngIf="newcontatForm.get('message').errors.maxLength">
+                      Max characters upto 1000
+                    </span>
+                  </span>
+                  </div>
+                </div>
+              <button class="orange-button" title="Submit" (click)="onSubmitContact(newcontatForm.value)">
+                Submit<span><img alt="" src="assets/images/right-arrow.svg"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="right-container" style="background-image: url('assets/images/contact-illustration.svg')">
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,408 @@
+<app-inner-header></app-inner-header>
+<app-profile-letter-popup></app-profile-letter-popup>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>My Profile</h3>
+          <!-- <p>Lorem Ipsum is simply dummy text of the</p>
+          <p>printing and typesetting industry.</p> -->
+        </div>
+        <div class="family_left_content_outer">
+          <div class="user_info_outer" *ngIf="role == 'elf'">
+            <i class="dp"><img src="{{image}}" alt=""></i>
+            <div class="user_info">
+              <h4>{{user_name}}</h4>
+              <p>{{state}}</p>
+            </div>
+          </div>
+          <div class="user_info_outer" *ngIf="role == 'family'">
+            <i class="dp"><img src="{{familydatas?.photo}}" alt=""></i>
+            <div class="user_info">
+              <h4>{{familydatas?.name}}</h4>
+              <p>{{familydatas?.state}}</p>
+            </div>
+          </div>
+          <ul class="match_conversations">
+            <li routerLink="/family-matches">
+              <i><img src="assets/images/heart-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_matches}}</span>
+              <p>Matches</p>
+            </li>
+            <li routerLink="/conversations">
+              <i><img src="assets/images/chat-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_conversations}}</span>
+              <p>Conversations</p>
+            </li>
+          </ul>
+        </div>
+        <div class="family_left_content_outer">
+          <h4>New Family Matches</h4>
+          <ul class="matched_familes">
+            <li *ngFor="let data of elfmatchdata">
+              <a href="javascript:void(0)" class="user_with_status">
+                <i><img src={{data.photo}} alt=""></i>
+                <em class="status"></em>
+              </a>
+            </li>
+            <!-- <li>+24</li> -->
+          </ul>
+          <h4>Conversations</h4>
+          <p>Coming Soon</p>
+          <!-- <ul class="conversations_list">
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+
+          </ul> -->
+        </div>
+      </div>
+      <div class="col10" *ngIf="role == 'elf'">
+        <div class="static_position">
+          <div class="page-overlay"></div>
+
+          <div class="family-profile-detail sidebar my-profile">
+
+            <form  [formGroup]="myProfile" (ngSubmit)="updateElfprofile(myProfile.value)">
+              <div class="relative_position">
+                <ng-scrollbar>
+                  <div class="sidebar-content">
+                    <div class="profile-image" (click)="openLetterProfileViewPopup()">
+                      <img class="close-btn" src="assets/images/close.svg" alt="" (click)="closeProfileDetailSidebar()">
+                      <span class="cyan_strip">{{organisation}}</span>
+                      <img [src]="image" alt="">
+                    </div>
+                    <div class="profile-content">
+                      <div class="address-block">
+                        <h3>{{user}}</h3>
+                        <p>{{state}}</p>
+                      </div>
+                      <p class="description" *ngIf="!editProfile">{{profile_bio}}</p>
+                      <div class="form-group" *ngIf="editProfile" [ngClass]="{'has-error':myProfile.get('profile_bio').invalid&&myProfile.get('profile_bio').dirty}">
+                        <textarea class="form-control" placeholder="Type your bio here…"  formControlName="profile_bio"  [(ngModel)]="profile_bio" ></textarea>
+                        <span class="error-msg" *ngIf="myProfile.get('profile_bio').invalid && myProfile.get('profile_bio').dirty ">
+                          <span *ngIf="myProfile.get('profile_bio').errors.required">
+                            This field is required
+                          </span>
+                          <span *ngIf="myProfile.get('profile_bio').errors.pattern">
+                            Please enter valid information
+                          </span>
+                          <span *ngIf="myProfile.get('profile_bio').errors.minlength">
+                            Please enter minimum 3 charecters
+                          </span>
+                        </span>
+
+                      </div>
+                      <ul>
+                        <li>
+                          <h4>Email Address</h4>
+                          <p *ngIf="!editProfile">{{elf_email}}</p>
+                          <div class="form-group" *ngIf="editProfile"  [ngClass]="{'has-error':myProfile.get('elf_email').dirty && myProfile.get('elf_email').invalid}">
+                            <input type="email" class="form-control" formControlName="elf_email" [(ngModel)]="elf_email">
+                            <span class="error-msg" *ngIf="myProfile.get('elf_email').dirty && myProfile.get('elf_email').invalid">
+                              <span *ngIf="myProfile.get('elf_email').errors.required">
+                                This field is required
+                              </span>
+                              <span *ngIf="myProfile.get('elf_email').errors.pattern">
+                                Please enter a valid email id
+                              </span>
+                              <span *ngIf="myProfile.get('elf_email').errors.email">
+                                Email must be a valid email address
+                              </span>
+                            </span>
+                          </div>
+                        </li>
+                        <li>
+                          <h4>Username</h4>
+                          <p *ngIf="!editProfile">{{user_name}}</p>
+                          <!-- <div class="form-group" *ngIf="editProfile"  [ngClass]="{'has-error':myProfile.get('user_name').dirty && myProfile.get('user_name').invalid}">
+                            <input type="text" class="form-control" formControlName="user_name" [(ngModel)]="user_name" >
+                            <span class="error-msg" *ngIf="myProfile.get('user_name').invalid && myProfile.get('user_name').dirty">
+                              <span *ngIf="myProfile.get('user_name').errors.required">
+                                This field is required
+                              </span>
+                              <span *ngIf="myProfile.get('user_name').errors.pattern">
+                                Please enter valid information
+                              </span>
+                              <span *ngIf="myProfile.get('user_name').errors.minlength">
+                                Please enter minimum 3 charecters
+                              </span>
+                            </span>
+
+                          </div> -->
+                          <div class="form-group" *ngIf="editProfile">
+                            <input type="text" class="form-control" formControlName="user_name" [(ngModel)]="user_name">
+                          </div>
+                        </li>
+                        <li>
+                          <h4>Anonymous to the Family</h4>
+                          <p *ngIf="!editProfile">{{is_anonymous}}</p>
+                          <div class="custom-radio-btn" *ngIf="editProfile">
+                            <label class="radio-container">
+                              <input type="radio" name="is_anonymous" formControlName="is_anonymous"  [(ngModel)]="is_anonymous"  value=true  checked>
+                              <span>Yes</span>
+                            </label>
+                            <label class="radio-container">
+                              <input type="radio" name="is_anonymous"  formControlName="is_anonymous"  [(ngModel)]="is_anonymous" value=false>
+                              <span>No</span>
+                            </label>
+                          </div>
+                        </li>
+
+                        <li>
+                          <h4>Family Preferences</h4>
+                          <p *ngIf="!editProfile">{{family_preference}}</p>
+                          <div class="custom_radio_with_tick_container has_three" *ngIf="editProfile">
+                            <div class="custom_radio_tick_outer">
+                              <label><img src="assets/images/boy.svg" alt=""></label>
+                              <input type="radio" name="family_preference" class="custom_input"   [(ngModel)]="family_preference" formControlName="family_preference" value="boy">
+                              <div class="outer_border">
+                                <div class="tick"></div>
+                              </div>
+                            </div>
+                            <div class="custom_radio_tick_outer">
+                              <label><img src="assets/images/girl.svg" alt=""></label>
+                              <input type="radio" name="family_preference" class="custom_input"  [(ngModel)]="family_preference" formControlName="family_preference" value="girl">
+                              <div class="outer_border">
+                                <div class="tick"></div>
+                              </div>
+                            </div>
+                            <div class="custom_radio_tick_outer">
+                              <label><img src="assets/images/boy-girl.svg" alt=""></label>
+                              <input type="radio" name="family_preference" class="custom_input" [(ngModel)]="family_preference"  formControlName="family_preference"  value="boy and girl">
+                              <div class="outer_border">
+                                <div class="tick"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <h4>Your Location</h4>
+                          <p *ngIf="!editProfile">{{state}}</p>
+                          <div class="form-group" *ngIf="editProfile">
+                            <ejs-dropdownlist class="form-control" [dataSource]='stateData' formControlName="state"  [(ngModel)]="state"  placeholder='Anywhere in United States'>
+                            </ejs-dropdownlist>
+                          </div>
+                        </li>
+                        <li>
+                          <h4>Organization Preferences </h4>
+                          <p *ngIf="!editProfile">{{organisation}}</p>
+                          <br/>
+                          <div class="form-group" *ngIf="editProfile" >
+                            <ejs-multiselect class="form-control multi-select" [dataSource]='organisationsData'  [(ngModel)]="organisation" formControlName="organisation"   [fields]='organisationsFields' [placeholder]='organisationsWaterMark' [popupHeight]='popupHeight' [popupWidth]='popupWidth' ></ejs-multiselect>
+
+                              <!-- <span class="error-msg" *ngIf="myProfile.get('organisation').invalid && myProfile.get('organisation').touched">
+                                  <span *ngIf="myProfile.get('organisation').errors.required">
+                                  This field is required
+                               </span>
+                             </span>  -->
+
+                          </div>
+                        </li>
+                      </ul>
+
+                    </div>
+                  </div>
+                </ng-scrollbar>
+                <div class="btn-transperent-wrapper">
+                  <button class="orange-button" *ngIf="!editProfile" (click)="editProfileActive()"><span><img src="assets/images/pencil.svg" alt=""></span>Edit Profile</button>
+                  <button class="orange-button" *ngIf="editProfile" (click)="editProfileActive();updateElfprofile(myProfile.value)"  [disabled]="myProfile.invalid">Submit</button>
+                </div>
+              </div>
+            </form>
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col10" *ngIf="role == 'family'">
+        <div class="static_position">
+          <div class="page-overlay"></div>
+          <div class="family-profile-detail sidebar my-profile">
+            <form  [formGroup]="familyProfile" (ngSubmit)="updateElfprofile(myProfile.value)">
+              <div class="relative_position">
+                <ng-scrollbar>
+                  <div class="sidebar-content">
+                    <div class="profile-image" (click)="openFamilyPopup()">
+                      <img class="close-btn" src="{{familydatas.photo}}" alt="" (click)="closeProfileDetailSidebar()">
+                      <span class="cyan_strip">{{familydatas.organisation}}</span>
+                      <img src="{{familydatas.photo}}" alt="">
+                    </div>
+                    <div class="profile-content">
+                      <div class="address-block">
+                        <h3>{{familydatas.name}}</h3>
+                        <p>{{familydatas.state}}</p>
+                      </div>
+                      <p class="description" *ngIf="!editProfile">{{familydatas.profile_bio}}</p>
+                      <div class="form-group" *ngIf="editProfile" [ngClass]="{'has-error':familyProfile.get('profile_bio').invalid && familyProfile.get('profile_bio').dirty}">
+                        <textarea class="form-control" placeholder="Type your bio here…" formControlName="profile_bio"></textarea>
+                        <span class="error-msg" *ngIf="familyProfile.get('profile_bio').invalid && familyProfile.get('profile_bio').dirty">
+                          <span *ngIf="familyProfile.get('profile_bio').errors.required">
+                            This field is required
+                          </span>
+                          <span *ngIf="familyProfile.get('profile_bio').errors.pattern">
+                            Please enter valid information
+                          </span>
+                          <span *ngIf="familyProfile.get('profile_bio').errors.minlength">
+                            Please enter minimum 3 charecters
+                          </span>
+                        </span>
+                      </div>
+                      <ul>
+                        <li>
+                          <h4>Email Address</h4>
+                            <p *ngIf="!editProfile">{{familydatas.email}}</p>
+                            <div class="form-group" *ngIf="editProfile"  [ngClass]="{'has-error':familyProfile.get('elf_email').dirty && familyProfile.get('elf_email').invalid}">
+                            <input type="email" class="form-control" formControlName="elf_email">
+                            <span class="error-msg" *ngIf="familyProfile.get('elf_email').dirty && familyProfile.get('elf_email').invalid">
+                              <span *ngIf="familyProfile.get('elf_email').errors.required">
+                                This field is required
+                              </span>
+                              <span *ngIf="familyProfile.get('elf_email').errors.pattern">
+                                Please enter a valid email id
+                              </span>
+                              <span *ngIf="familyProfile.get('elf_email').errors.email">
+                                Email must be a valid email address
+                              </span>
+                            </span>
+                          </div>
+                        </li>
+                        <li>
+                          <h4>Username</h4>
+                          <p *ngIf="!editProfile">{{familydatas.name}}</p>
+                          <div class="form-group" *ngIf="editProfile"  [ngClass]="{'has-error':familyProfile.get('user_name').dirty && familyProfile.get('user_name').invalid}">
+                            <input type="text" class="form-control" formControlName="user_name" >
+                            <span class="error-msg" *ngIf="familyProfile.get('user_name').invalid && familyProfile.get('user_name').dirty">
+                              <span *ngIf="familyProfile.get('user_name').errors.required">
+                                This field is required
+                              </span>
+                              <span *ngIf="familyProfile.get('user_name').errors.pattern">
+                                Please enter valid Username
+                              </span>
+                              <span *ngIf="familyProfile.get('user_name').errors.minlength">
+                                Please enter minimum 3 charecters
+                              </span>
+                            </span>
+                          </div>
+                          <!-- <div class="form-group" *ngIf="editProfile">
+                            <input type="email" class="form-control" formControlName="user_name" [(ngModel)]="user_name" >
+                          </div> -->
+                        </li>
+                          <!-- <h4>Family Preferences</h4>
+                          <p *ngIf="!editProfile">{{family_preference}}</p>
+                          <div class="custom_radio_with_tick_container has_three" *ngIf="editProfile">
+                            <div class="custom_radio_tick_outer">
+                              <label><img src="assets/images/boy.svg" alt=""></label>
+                              <input type="radio" name="family_preference" class="custom_input"   [(ngModel)]="family_preference" formControlName="family_preference" value="boy">
+                              <div class="outer_border">
+                                <div class="tick"></div>
+                              </div>
+                            </div>
+                            <div class="custom_radio_tick_outer">
+                              <label><img src="assets/images/girl.svg" alt=""></label>
+                              <input type="radio" name="family_preference" class="custom_input"  [(ngModel)]="family_preference" formControlName="family_preference" value="girl">
+                              <div class="outer_border">
+                                <div class="tick"></div>
+                              </div>
+                            </div>
+                            <div class="custom_radio_tick_outer">
+                              <label><img src="assets/images/boy-girl.svg" alt=""></label>
+                              <input type="radio" name="family_preference" class="custom_input" [(ngModel)]="family_preference"  formControlName="family_preference"  value="boy and girl">
+                              <div class="outer_border">
+                                <div class="tick"></div>
+                              </div>
+                            </div>
+                          </div> -->
+                        <li *ngIf="!editProfile">
+                          <h4>Family</h4>
+                          <p *ngIf="!editProfile">{{familydatas.number_of_boys}} boy, {{familydatas.number_of_girls}} girl</p>
+                        </li>
+                        <li>
+                          <h4>Your Location</h4>
+                          <p *ngIf="!editProfile">{{familydatas.state}}</p>
+                          <div class="form-group" *ngIf="editProfile">
+                            <ejs-dropdownlist class="form-control" [dataSource]='stateData' formControlName="state"  placeholder='Anywhere in United States'>
+                            </ejs-dropdownlist>
+                          </div>
+                        </li>
+                        <li>
+                          <h4>Organization Preferences </h4>
+                          <div *ngIf="!editProfile">
+                            <p *ngFor="let familyData of familyorganisation">
+                            {{familyData}}
+                            </p>
+                        </div>
+                          <!-- <p *ngIf="!editProfile" >{{familydatas.organisation}}</p> -->
+
+                          <div class="form-group" *ngIf="editProfile" >
+                            <ejs-multiselect class="form-control multi-select" [dataSource]='organisationsData' formControlName="organisation"  [fields]='organisationsFields' [placeholder]='organisationsWaterMark'></ejs-multiselect>
+                            <!-- [(ngModel)]="organisation" -->
+                            <!-- <span class="error-msg" *ngIf="myProfile.get('organisation').invalid && myProfile.get('organisation').touched">
+                             <span *ngIf="myProfile.get('organisation').errors.required">
+                               This field is required
+                                 </span>  </span>  -->
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </ng-scrollbar>
+                <div class="btn-transperent-wrapper">
+                  <button class="orange-button" *ngIf="!editProfile" (click)="editProfileActive()"><span><img src="assets/images/pencil.svg" alt=""></span>Edit Profile</button>
+                  <button class="orange-button" *ngIf="editProfile" (click)="editProfileActive();updatefamilyprofile(familyProfile.value)" [disabled]="familyProfile.invalid" >Submit</button>
+                </div>
+              </div>
+            </form>
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- modal popup start -->
+
+<div *ngIf="family_popup">
+<div class="modal-overlay family_profile" (click)="closeFamilyPopup()"></div>
+<div class="modal-wrapper family_wrapper">
+  <div class="modal modal-md">
+    <div class="modal-body">
+      <button class="close-modal" (click)="closeFamilyPopup()" title="close">
+        <img src="assets/images/close.svg" alt="">
+      </button>
+      <div class="profile-image">
+        <img src="{{familydatas.santa_letter}}" alt="">
+      </div>
+      <div class="profile-detail">
+        <div class="user_with_status">
+          <i><img src="{{familydatas.photo}}" alt=""></i>
+        </div>
+        <div class="address-block">
+          <h3>{{familydatas.name}}</h3>
+          <p>{{familydatas.state}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- modal popup end -->

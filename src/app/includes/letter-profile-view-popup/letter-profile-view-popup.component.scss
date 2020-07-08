@@ -1,0 +1,13 @@
+::ng-deep .letter-profile-view-popup-open{
+    overflow: hidden;
+    app-letter-profile-view-popup {
+      .modal-overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-wrapper {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+}

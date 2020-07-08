@@ -1,0 +1,81 @@
+<!-- <div class="join_list"> -->
+  <!-- <h2 class="content-heading">Say hello to the join our list</h2> -->
+  <!-- <div class="container main_wrapper">
+    <div class="join_list_wrapper" style="background-image: url(assets/images/join_list_banner.svg);">
+      <div class="content">
+        <h3>Be the first to hear about when the workshop opens!</h3>
+        <a class="header-btn white-bordered" [routerLink]="['/contact']" title="Sign Up">Get Updates<span><img alt="" src="assets/images/right-arrow.svg"></span></a>
+
+        <br><br>
+
+        <form [formGroup]="contatForm">
+          <div class="two_column">
+            <div class="form-group" [ngClass]="{'has-error':contatForm.get('first_name').touched && contatForm.get('first_name').invalid}">
+              <input type="text" class="form-control" formControlName="first_name" placeholder="First Name">
+              <span class="error-msg" *ngIf="contatForm.get('first_name').touched && contatForm.get('first_name').invalid">
+        <span *ngIf="contatForm.get('first_name').errors.required">
+          This field is required
+        </span>
+        <span *ngIf="contatForm.get('first_name').errors.pattern">
+          Only characters are allowed
+          </span>
+      </span>
+            </div>
+            <div class="form-group"  [ngClass]="{'has-error':contatForm.get('last_name').touched && contatForm.get('last_name').invalid}">
+              <input type="text" class="form-control" formControlName="last_name" placeholder="Last Name">
+              <span class="error-msg" *ngIf="contatForm.get('last_name').touched && contatForm.get('last_name').invalid">
+        <span *ngIf="contatForm.get('last_name').errors.required">
+          This field is required
+        </span>
+        <span *ngIf="contatForm.get('last_name').errors.pattern">
+          Only characters are allowed
+          </span>
+      </span>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':contatForm.get('email').touched && contatForm.get('email').invalid}">
+            <input type="email" class="form-control" formControlName="email" placeholder="you@gmail.com">
+            <span class="error-msg" *ngIf="contatForm.get('email').touched && contatForm.get('email').invalid">
+      <span *ngIf="contatForm.get('email').errors.required">
+        This field is required
+      </span>
+      <span *ngIf="contatForm.get('email').errors.pattern">
+        Please enter a valid email id
+      </span>
+        </span>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Message" formControlName="message"></textarea>
+          </div>
+
+          <button class="orange-button" title="Submit" (click)="onSubmit(contatForm.value)">
+            Submit <span><img alt="" src="assets/images/right-arrow.svg"></span>
+          </button>
+        </form>
+
+
+      </div>
+    </div>
+  </div> -->
+<!-- </div> -->
+
+<footer>
+  <div class="social_links">
+    <div class="container">
+      <ul class="links">
+        <li><a href="https://www.facebook.com/groups/Miracleon22ndStreet/" target="_blank" title="Facebook">Facebook</a></li>
+        <li><a href="https://twitter.com/miracleon22ndst" target="_blank" title="Twitter">Twitter</a></li>
+        <li><a href="https://instagram.com/miracleon22ndstreet" target="_blank" title="Instagram">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom_footer">
+    <div class="container">
+      <span class="text">©2019 Miracle on 22nd Street is a 501 (C)(3) registered non-profit • EIN 83-0601813 • All rights reserved</span>
+      <ul class="footer_links">
+        <li><a [routerLink]="['/terms']" title="Santa’s Terms">Santa’s Terms</a></li>
+        <li><a [routerLink]="['/privacy-policy']" title="Privacy Policy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

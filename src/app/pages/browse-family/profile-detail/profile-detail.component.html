@@ -1,0 +1,92 @@
+<app-match-family-popup></app-match-family-popup>
+
+<div class="page-overlay" (click)="closeProfileDetailSidebar()"></div>
+<div class="family-profile-detail sidebar">
+
+  <div class="relative_position">
+    <ng-scrollbar>
+      <div class="sidebar-content">
+        <div class="profile-image" (click)="openLetterProfileViewPopup()">
+          <a href="javascript:void(0)" class="close-btn" title="Close" (click)="closeProfileDetailSidebar()">
+            <img src="assets/images/close.svg" alt="">
+          </a>
+          <span class="cyan_strip">{{familyInfobyId.organisation}}</span>
+          <img [src]="familyInfobyId.photo" alt="">
+        </div>
+        <div class="profile-content">
+          <div class="address-block">
+            <h3>{{familyInfobyId.name}}</h3>
+            <p>{{familyInfobyId.state}}</p>
+          </div>
+          <p class="description">{{familyInfobyId.profile_bio}}.</p>
+          <ul>
+            <li>
+              <h4>Letter</h4>
+              <img [src]="familyInfobyId.santa_letter" alt="">
+            </li>
+            <li>
+              <h4>Family Information</h4>
+              <p>{{familyInfobyId.number_of_boys}} Boys, {{familyInfobyId.number_of_girls}} Girls, {{familyInfobyId.nonbinary_count}} Both</p>
+            </li>
+            <li>
+              <h4>Budget</h4>
+              <p>{{familyInfobyId.budget}}</p>
+            </li>
+            <li>
+              <h4>Organization Preferences</h4>
+              <p>{{familyInfobyId.organisation}}</p>
+            </li>
+            <li>
+              <h4>Amazon Wishlist link</h4>
+              <p>{{familyInfobyId.amazon_wishlist}}</p>
+            </li>
+            <li>
+              <h4>Facebook link</h4>
+              <p>{{familyInfobyId.facebook_link}}</p>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </ng-scrollbar>
+    <div class="btn-transperent-wrapper">
+      <button class="orange-button" title="Request Match" (click)="openMatchFamilyPopup()"><span><img src="assets/images/heart-white.svg" alt=""></span>Request Match</button>
+    </div>
+  </div>
+
+
+  <!-- <div class="sidebar-content">
+    <div class="profile-image">
+      <img class="close-btn" src="assets/images/close.svg" alt="" (click)="closeProfileDetailSidebar()">
+      <span class="cyan_strip">NYC Together</span>
+      <img src="assets/images/sidebar-image.png" alt="">
+    </div>
+    <div class="profile-content">
+      <div class="address-block">
+        <h3>Joe Melany</h3>
+        <p>California, New York</p>
+      </div>
+      <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      <ul>
+        <li>
+          <h4>Letter</h4>
+          <img src="assets/images/Letter.jpg" alt="">
+        </li>
+        <li>
+          <h4>Family Information</h4>
+          <p>2 Boys, 2 Girls</p>
+        </li>
+        <li>
+          <h4>Budget (Per Child)</h4>
+          <p>$25</p>
+        </li>
+        <li>
+          <h4>Organization Preferences</h4>
+          <p>NYC Together</p>
+        </li>
+      </ul>
+      <button class="orange-button" title="Request Match" (click)="openMatchFamilyPopup()"><span><img src="assets/images/heart-white.svg"
+            alt=""></span>Request Match</button>
+    </div>
+  </div> -->
+</div>

@@ -1,0 +1,254 @@
+<app-inner-header></app-inner-header>
+<div class="inner-page-wrapper">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Dashboard</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col8 family_left_content">
+        <div class="family_left_content_outer">
+          <div class="title_block">
+            <h3>User Analytics</h3>
+            <div class="analytics_time">
+              <select class="custom_select" (change)="userAnalytics($event.target.value)">
+                <option *ngFor="let obj of filterUser" [value]="obj.days">{{obj.day}}</option>
+              </select>
+            </div>
+          </div>
+          <ul class="analytics_info">
+            <li>
+              <h4>Total families</h4>
+              <p style="text-align: center;">{{total_family_count}}</p>
+            </li>
+            <li>
+              <h4>Total Elves</h4>
+              <p style="text-align: center;">{{total_elf_count}}</p>
+            </li>
+            <li>
+              <h4>Matched families</h4>
+              <p style="text-align: center;">{{matched_family_count}}</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="family-signed-matched-wrapper">
+          <div class="family-signed-matched-outer">
+            <div class="inner-content">
+              <div class="title_block">
+                <h4>Family Signed Up</h4>
+                <a [routerLink]="['/admin/family-signed-up']" class="see_all" title="See All">See All</a>
+              </div>
+              <div class="signed_matched_families_listing">
+                <ul>
+                  <li *ngFor="let signedFamilies of signedUpFamilies | paginate: {id:'pagination5',itemsPerPage: 3, currentPage: p }">
+                    <div class="content">
+                      <div class="dp"><i><img src={{signedFamilies.photo}} alt=""></i></div>
+                      <div class="info"><strong>{{signedFamilies.name}}</strong> has signed up as a Family.</div>
+                    </div>
+                    <div class="btn_block">
+                      <button class="btn grey-button" (click)="declineFamily(signedFamilies)">Decline</button>
+                      <button class="btn orange-button" (click)="approveFamily(signedFamilies)">Approve</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+                ></ngx-loading>
+                <pagination-controls id="pagination5" autoHide="true" class="my-pagination" responsive="true" (pageChange)="p = $event" previousLabel=""
+                nextLabel=""></pagination-controls>
+            </div>
+          </div>
+
+          <div class="family-signed-matched-outer">
+            <div class="inner-content">
+              <div class="title_block">
+                <h4>New Matched Families</h4>
+                <a [routerLink]="['/admin/matched-families']" class="see_all" title="See All">See All</a>
+              </div>
+              <div class="signed_matched_families_listing">
+                <ul>
+                  <li *ngFor="let matchedFamilies of matchedProfiles | paginate:{ id:'pagination7',itemsPerPage: 3, currentPage:s }">
+                    <div class="content matched">
+                      <div class="dp">
+                        <i><img src={{matchedFamilies.photo}} alt=""></i>
+                        <i><img src={{matchedFamilies.elf_photo}} alt=""></i>
+                      </div>
+                      <div class="info"><strong>{{matchedFamilies.name}}</strong> matched with
+                        <strong>{{matchedFamilies.elf_name}}</strong></div>
+                    </div>
+                    <div class="btn_block">
+                      <button class="btn grey-button" (click)="flaggedPopup(matchedFamilies.user_id)">Flag</button>
+                      <button class="btn orange-button">Message</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               ></ngx-loading>
+                <pagination-controls id="pagination7" class="my-pagination" autoHide="true" responsive="true" (pageChange)="s = $event" previousLabel=""
+                nextLabel=""></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col2 family_left_content">
+        <div class="family_left_content_outer">
+          <!-- <div class="title_block"> -->
+            <h4>Conversations</h4>
+            <!-- <a href="javascript:void(0)" class="see_all" title="See All">See All</a> -->
+            <ul class="conversations_list" *ngFor="let user of admindata">
+              <li>
+                <a (click)="goToconverstastion(user)">
+                  <div class="user_with_status" (click)="goToconverstastion(user)">
+                    <i><img src="{{user.photo}}" alt=""></i>
+                    <!-- <em class="status" *ngIf='list.status'></em> -->
+                  </div>
+                  <div class="conversations_details">
+                    <div class="name">
+                      <h4>{{user.user_name}}</h4>
+                      <span class="time">{{user.created_at}}</span>
+                    </div>
+                    <p></p>
+                  </div>
+                </a>
+              </li>
+            </ul> 
+          <!-- </div> -->
+          <!-- <p>Coming soon</p> -->
+
+          <!-- <ul class="conversations_list">
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+          </ul> -->
+        </div>
+
+        <div class="family_left_content_outer">
+          <div class="title_block">
+            <h4>Activity</h4>
+            <!-- <a href="javascript:void(0)" class="see_all" title="See All">See All</a> -->
+          </div>
+          <p>Coming soon</p>
+
+          <!-- <ul class="conversations_list">
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--flagged user start-->
+
+<div *ngIf="flagPopup">
+  <div class="modal-overlay" (click)="flaggedPopup()"></div>
+  <div class="modal-wrapper">
+    <div class="modal modal-sm">
+      <div class="modal-sm-inner">
+        <div class="modal-header">
+          <button class="close-modal" (click)="flaggedPopup()" title="close">
+            <img src="assets/images/modal-close.svg" alt="">
+          </button>
+          <h2>Flag to naughty list!</h2>
+          <p>Why you want to flag Joe Melany family to naughty list?</p>
+        </div>
+  
+        <form  [formGroup]='elfForm'>
+  
+          <div class="form-group">
+            <div class="custom-radio-btn stacked">
+              <label class="radio-container">
+                <input type="radio" name="flag_reason"  value="Offensive message" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/chat-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/chat-white.svg">
+                  </i>Offensive message
+                </span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="flag_reason"  value="Inappropriate photos/letters" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/pic-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/pic-white.svg">
+                  </i>Inappropriate photos/letters</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="flag_reason" value="Bad behaviour" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/chat-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/chat-white.svg">
+                  </i>Bad behaviour</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="flag_reason" value="Feel like spam" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/chat-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/chat-white.svg">
+                  </i>Feel like spam</span>
+              </label>
+              <label class="radio-container">
+                <input type="radio" name="flag_reason"  value="Others" formControlName="flag_reason">
+                <span>
+                  <i class="icon">
+                    <img alt="" src="assets/images/note-grey.svg">
+                    <img alt="" class="active_img" src="assets/images/note-white.svg">
+                  </i>Others</span>
+              </label>
+            </div>
+  
+            <textarea class="form-control" name="flag_additional_info" formControlName="flag_additional_info" placeholder="Additional Info (Required)"></textarea>
+          </div>
+  
+          <div class="modal-footer">
+            <button class="orange-button" (click)="newMatchedFlagData(elfForm.value)"><span><img src="assets/images/flag1-white.svg" alt=""></span>Flag to naughty list</button>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  <!--flagged user end-->
+  
+  
+

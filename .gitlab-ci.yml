@@ -1,0 +1,44 @@
+image: "mspteam/node:12.4.0-git"
+stages:
+- deploy
+production:
+  stage: deploy
+  script:
+    - npm install -g @angular/cli@8.3.20
+    - npm install
+    - npm run build --production
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws configure set default.region $AWS_DEFAULT_REGION
+    - aws configure set preview.cloudfront true
+    - aws s3 sync ./dist s3://$S3_BUCKET_NAME/ --acl=public-read --delete --exclude '.git/*' --exclude 'images/*'
+    - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths /\*
+  variables:
+    S3_BUCKET_NAME: www.miracleon22ndstreet.com
+    AWS_DEFAULT_REGION: us-east-1
+    CLOUDFRONT_ID: E1BX31UIDRNV8L
+  only:
+  - production
+  environment:
+    name: production
+
+deployment:
+  stage: deploy
+  script:
+    - npm install
+    - npm run build
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws configure set default.region $AWS_DEFAULT_REGION
+    - aws configure set preview.cloudfront true
+    - aws s3 sync ./dist s3://$S3_BUCKET_NAME/ --acl=public-read --delete --exclude '.git/*' --exclude 'images/*'
+    - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths /\*
+  variables:
+    S3_BUCKET_NAME: staging.miracleon22ndstreet.com
+    AWS_DEFAULT_REGION: us-east-1
+    CLOUDFRONT_ID: E2LBR9562S3NF
+  only:
+  - deployment
+  environment:
+    name: deployment
+

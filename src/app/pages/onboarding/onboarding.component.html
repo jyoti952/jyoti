@@ -1,0 +1,47 @@
+<div class="full-page-wrapper">
+  <div class="after-login-container">
+    <div class="content">
+      <app-onboarding-elf-nav></app-onboarding-elf-nav>
+      <div class="code-of-conduct">
+        <h2>Code of Conduct</h2>
+        <form name="codeOfConduct" [formGroup]="codeOfConduct">
+          <p>I agree that I am over 18 and understand and agree to theses terms and conditions. I am a real person and truly want to help a family in need. I understand that if I don't select to remain anonymous, I will be giving some of my personal information over to another person who may request to chat with me. I understand that the people who run Miracle on 22nd Street are not responsible for any communications beyond the connection we've made through this website. Please read our <a [routerLink]="['/privacy-policy']" title="Privacy Policy" target="_blank">privacy policy.</a> I agree to the Miracle Code of Conduct.</p>
+
+          <div class="form-group custom_checkbox rounded">
+            <input type="radio" class="custom_input" name="conditions" formControlName="conditions" [value]="true">
+            <span class="checkmark"></span>
+            <span class="error-msg" *ngIf="codeOfConduct.get('conditions').touched && codeOfConduct.get('conditions').invalid">
+              <span *ngIf="codeOfConduct.get('conditions').errors.required">
+                This field is required
+              </span>
+            </span>
+            <label>Accept the conditions</label>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':codeOfConduct.get('profileBio').invalid && (codeOfConduct.get('profileBio').touched || codeOfConduct.get('profileBio').dirty)}">
+            <label>Tell Us About Yourself*</label>
+            <textarea class="form-control" placeholder="Type your bio here…" formControlName="profileBio"></textarea>
+            <span class="error-msg" *ngIf="codeOfConduct.get('profileBio').invalid && (codeOfConduct.get('profileBio').touched || codeOfConduct.get('profileBio').dirty)">
+              <span *ngIf="codeOfConduct.get('profileBio').errors.required">
+                This field is required
+              </span>
+              <span *ngIf="codeOfConduct.get('profileBio').errors.pattern">
+                Please enter valid information
+              </span>
+              <span *ngIf="codeOfConduct.get('profileBio').errors.minlength">
+                Please enter minimum 3 charecters
+              </span>
+            </span>
+          </div>
+
+          <div class="btn-block">
+            <a [routerLink]="['/onboarding/elf/profile-photo']" class="btn next-arrow-button" title="Next" [ngClass]="{'disable': codeOfConduct.invalid}" (click)="onSubmit(codeOfConduct.value);" id="btn1">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <app-onboarding-footer></app-onboarding-footer>
+
+  </div>
+</div>

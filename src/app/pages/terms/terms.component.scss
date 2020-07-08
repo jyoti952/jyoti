@@ -1,0 +1,75 @@
+@import "color";
+@import "break-points";
+
+.full-page-wrapper {
+  background: $primary;
+}
+
+.content-wrapper {
+  .left-container {
+    padding-right: 25px;
+    @include bp(smd-max) {
+      padding-right: 0;
+      width: 100% !important;
+    }
+    @include bp(xlg-max) {
+      min-height: inherit;
+      width: 49%;
+    }
+    .landing-page-container {
+      padding-top: 19px;
+      @include bp(xlg-max) {
+        padding-top: 180px;
+      }
+      @include bp(lg-max) {
+        padding-top: 160px;
+      }
+      @include bp(md-max) {
+        padding-top: 140px;
+      }
+      @include bp(smd-max) {
+        max-width: 100%;
+      }
+      h1 {
+        color: $white;
+        margin-bottom: 26px;
+        font-size: 50px;
+        @include bp(md-max) {
+          font-size: 48px;
+        }
+        @include bp(smd-max) {
+          font-size: 44px;
+          margin-bottom: 20px;
+        }
+      }
+      p {
+        font-size: 20px;
+        line-height: 1.4;
+        letter-spacing: 0.2px;
+        color: $white;
+        margin-bottom: 34px;
+        @include bp(md-max) {
+          font-size: 18px;
+        }
+        @include bp(smd-max) {
+          font-size: 16px;
+          margin-bottom: 30px;
+        }
+      }
+      .orange-button {
+        font-family: "circularbook";
+        display: inline-flex;
+        width: auto;
+        padding: 0 23px;
+        margin: 0;
+        @include bp(xxs-max) {
+          padding: 0 12px;
+          width: 100%;
+        }
+        span {
+          margin: 0 0 0 10px;
+        }
+      }
+    }
+  }
+}

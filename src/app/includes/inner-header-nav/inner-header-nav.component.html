@@ -1,0 +1,35 @@
+<!-- <nav class="inner-header-nav" *ngIf="innerHeaderNavItems?.length">
+  <ul>
+    <li *ngFor="let menuItems of innerHeaderNavItems">
+      <a *ngIf="(role=='family' && menuItems.label=='Conversations' ) || role!='family'  " [routerLink]="role!='family' ? [menuItems.link] : []" title={{menuItems.label}} routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <i>
+          <img src={{menuItems.img}} alt="">
+          <img class="active_img" src={{menuItems.activeImg}} alt="">
+        </i>
+        {{menuItems.label}}
+      </a>
+    </li>
+  </ul>
+</nav> -->
+
+<nav class="inner-header-nav">
+
+   <ul *ngIf="role=='elf'">
+    <li>
+      <a [routerLink]="['/browse-family']" routerLinkActive="active"><i><img src="assets/images/person-grey.svg" alt="" ><img class="active_img" src="assets/images/person-red.svg" alt=""></i>Browse Families</a>
+    </li>
+    <li>
+      <a [routerLink]="['/family-matches']" routerLinkActive="active"><i><img src="assets/images/heart-grey.svg" alt=""><img class="active_img" src="assets/images/heart-red.svg" alt=""></i>My Matches</a>
+    </li>
+    <li>
+      <a [routerLink]="['/conversations']" routerLinkActive="active"><i><img src="assets/images/chat-grey.svg" alt=""><img class="active_img" src="assets/images/chat-red.svg"  alt=""></i>Conversations</a>
+    </li>
+  </ul> 
+
+   <ul *ngIf="role=='family'">
+     <li style="display:block;">
+      <a [routerLink]="['/family/conversations']" routerLinkActive="active"><i><img src="assets/images/chat-grey.svg" alt=""><img class="active_img" src="assets/images/chat-red.svg"  alt=""></i>Conversations</a>
+    </li>
+  </ul> 
+
+</nav> 

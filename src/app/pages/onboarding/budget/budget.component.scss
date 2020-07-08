@@ -1,0 +1,33 @@
+@import "color.scss";
+@import "fonts.scss";
+
+.budget_input {
+  display: flex;
+  justify-content: space-between;
+  .form-group {
+    width: 48%;
+  }
+}
+
+.after-login-container {
+  .content {
+    h4 {
+      font-family: "circularbold";
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+    p {
+      color: $grey !important;
+      font-family: "circularbook";
+    }
+    .budget-organization-details {
+      margin-bottom: 47px;
+      p {
+        color: $black_shade_3 !important;
+        .higlighted_text {
+          color: $orange;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+<app-inner-header></app-inner-header>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Family Signed Up</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col10">
+
+        <div class="search-bar">
+          <div class="search_left">
+            <i><img src="assets/images/search.svg" alt=""></i>
+             <input type="text" placeholder="Search with Name" [(ngModel)]="searchValue">  
+          </div>
+          <button class="search_btn" (click)="openFilterSidebar()">
+            <i><img src="assets/images/filter-icon.svg" alt="">
+               <em class="count">{{count}}</em> 
+            </i>Filter
+          </button>
+        </div>
+ 
+        <div class="custom-tag-wrapper">
+          <ul>
+            <li class="custom-tag" *ngIf="this.filterFamily.get('familyPreferences').value && filter">
+              <span>Family Prefrences</span>
+              <button class="close" (click)="removeFilter(this.filterFamily.get('familyPreferences').value)"><img src="assets/images/close.svg" alt=""></button>
+            </li>
+            <li class="custom-tag" *ngIf="this.filterFamily.get('organization').value && filter">
+              <span>Organizations</span>
+              <button class="close"  (click)="removeFilter(this.filterFamily.get('organization').value)"><img src="assets/images/close.svg" alt=""></button>
+            </li>
+            <li class="custom-tag" *ngIf="this.filterFamily.get('location').value && filter">
+              <span>location</span>
+              <button class="close" (click)="removeFilter(this.filterFamily.get('location').value)"><img src="assets/images/close.svg" alt=""></button>
+            </li>
+          </ul>
+        </div> 
+
+        <div class="info-wrapper">
+          <!-- <div class="user-info-detail" *ngFor="let families of signedUpFamilies|signedup:searchValue | paginate: { itemsPerPage: 6, currentPage: p }"> -->
+           <div class="user-info-detail" *ngFor="let families of signedUpFamilies | signedup:searchValue | paginate: { itemsPerPage: 6, currentPage: p }">
+            <div *ngIf="getdata.data">
+              <a  (click)="getnewfamilysbyid(families)" class="img-block">
+                <div class="img-inner">
+                  <img src={{families.photo}} alt="">
+                </div>
+                <span class="cyan_strip">{{ families.organisation }}</span>
+              </a>
+              <a   (click)="getnewfamilysbyid(families)"  class="address-block">
+                <h3>{{ families.name }}</h3>
+                <p>{{ families.state }}</p>
+                <div class="btn_block">
+                  <button class="btn grey-button" (click)="declineFamily(families)">Decline</button>
+                  <button class="btn orange-button" (click)="approveFamily(families)">Approve</button>
+                </div>
+              </a>
+              <ngx-loading *ngIf="signedUpFamilies.length" [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+            </div>
+          </div>
+          
+         <span class="nodata" *ngIf="getdata.data.length==0 || recordsCheck" style="color: red;">No data found</span> 
+         <!-- <span class="nodata" *ngIf="signedUpFamilies.length == 0" style="color: red;">No Records found</span> -->
+          <!-- <h2 class="nodata" *ngIf="(signedUpFamilies | signedup: searchValue)?.length==0" style="color: red">Data not found</h2> -->
+        </div>
+        <pagination-controls  autoHide="true" class="stylePagination" responsive="true" (pageChange)="p = $event"></pagination-controls>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!--popup start-->
+
+<div class="page-overlay" (click)="closeFilterSidebar()" *ngIf="overlay"></div>
+<div class="family-profile-detail sidebar filter-sidebar" *ngIf="sidebar">
+
+  <div class="sidebar-content">
+    <img class="close-btn" src="assets/images/close - gray.svg" alt="" (click)="closeFilterSidebar()">
+
+     <form [formGroup]="filterFamily">
+      <div class="form-group">
+        <label>Choose Family Preferences</label>
+        <div class="custom_radio_with_tick_container has_three">
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/boy.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" value="boy" formControlName="familyPreferences">
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/girl.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" value="girl" formControlName="familyPreferences">
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+          <div class="custom_radio_tick_outer">
+            <label><img src="assets/images/boy-girl.svg" alt=""></label>
+            <input type="radio" name="familyPreferences" class="custom_input" value="non-binary" formControlName="familyPreferences">
+            <div class="outer_border">
+              <div class="tick"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Choose your Organization</label>
+        <ejs-multiselect  formControlName="organization" name="organization" class="form-control multi-select" [dataSource]='organisationsData' [value]='organisationsDefault' [fields]='organisationsFields' [placeholder]='organisationsWaterMark'></ejs-multiselect>
+      </div>
+      <div class="location-group">
+  
+      <div class="form-group">
+          <label>Choose your Location</label>
+        <ejs-dropdownlist  formControlName="location" name="location" class="form-control" id='select-dropdown' [dataSource]='stateData' [value]='stateDefault' placeholder='Anywhere in United States'></ejs-dropdownlist>
+      </div>
+  </div>
+  <div class="btn-block two-button">
+    <a class="border-button btn" title="Cancel" (click)="closeFilterSidebar()">Cancel</a>
+    <a class="orange-button btn" title="Apply Changes" (click)="applyChanges(filterFamily.value)">Apply Changes</a>
+  </div>
+  </form>
+
+</div>
+</div>
+
+<!--poup end-->

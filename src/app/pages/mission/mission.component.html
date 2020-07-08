@@ -1,0 +1,42 @@
+<app-header></app-header>
+<app-video-popup></app-video-popup>
+
+<div class="full-page-wrapper purple-bg">
+  <div class="container">
+    <div class="inner-page-container no-bottom-spacing">
+
+      <div class="mission_wrapper">
+        <div class="mission_content">
+          <h1>Over 2000 families have been matched!</h1>
+          <p>Since 2010, It’s been our mission to connect families in need with real-life elves. People from all over
+            the world are stepping up to take a letter and fulfill the wishes of families in NYC and beyond.</p>
+          <p>We are expanding our organization to support other organizations who have similar values. Please <a
+              [routerLink]="['/contact']" title="reach out">reach out</a> if you are interested in getting involved as a
+            partner.</p>
+
+          <div class="landing_btns">
+            <!-- <a  *ngIf="user==null"  [routerLink]="['/signup']"   class="square-btn with-bg has-img" title="Sign up on miracle">
+              <em><img src="assets/images/user-white.svg" alt=""></em>SIGN <span>UP.</span>
+            </a> -->
+            <a href="javascript:void(0)" class="square-btn with-border has-img" title="Origin Story"
+              (click)="openVideoPopup()">
+              <em><img src="assets/images/play-rounded.svg" alt=""></em>
+              <div>ORIGIN <span>STORY.</span></div>
+            </a>
+            <a href="https://secure.causevox.com/pay?url=miracleon22ndstreetdonate.causevox.com" target="_blank"
+              title="Donate Now" class="square-btn with-border has-img">
+              <em><img src="assets/images/settings.svg" alt=""></em>
+              <div>DONATE <span>NOW.</span></div>
+            </a>
+          </div>
+        </div>
+        <div class="mission_img">
+          <img src="assets/images/mission-banner.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

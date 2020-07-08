@@ -1,0 +1,28 @@
+::ng-deep ngx-loading .backdrop,
+ngx-loading .backdrop {
+  position: fixed !important;
+}
+::ng-deep ng-scrollbar,
+ng-scrollbar {
+  height: 80vh !important;
+  border-radius: 12px;
+  min-height: 750px;
+}
+
+::ng-deep .ng-scroll-viewport-wrapper,
+.ng-scroll-viewport-wrapper {
+  border-radius: 12px;
+}
+
+::ng-deep .ng-scroll-content, .ng-scroll-content {
+      max-width: 100%;
+}
+::ng-deep .family-inner-header{
+  .inner-header-nav {
+    ul {
+      li:first-child,li:nth-child(2){
+        display: none;
+      }
+    }
+  }
+}

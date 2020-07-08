@@ -1,0 +1,140 @@
+<div class="full-page-wrapper">
+  <div class="after-login-container">
+    <div class="content">
+      <app-onboarding-family-nav></app-onboarding-family-nav>
+      <h2>Upload family photo or take a photo of it here for your profile.</h2>
+      <form name="profileInf" >
+        <div class="form-group">
+            <label>Profile photo (Optional)</label>
+          <div *ngIf="!edited&&!hide">
+            <div class="upload-image">
+              <div class="image-block">
+                <img src="assets/images/picture.svg" />
+                <a class="btn dark-orange-button rounded-button" title="Upload Photo">Upload Photo
+                  <input type="file" name="myFile" (change)="onSelectFile($event)" accept="image/*">
+                </a>
+              </div>
+              <div class="image-block">
+                <img src="assets/images/camera.svg" />
+                <a class="btn dark-orange-button rounded-button" title="Take Photo" accept="image/*;capture=camera" allow="camera" data-toggle="modal" data-target="#myModalCamera">Take Photo
+
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <h4 class="modal-title">
+                  <div>
+                    <!-- <button (click)="cropping.zoomIn()" ly-button appearance="icon">
+                      <ly-icon>zoom_in</ly-icon>
+                    </button>&nbsp;
+                    <button (click)="cropping.zoomOut()" ly-button appearance="icon">
+                      <ly-icon>zoom_out</ly-icon>
+                    </button>&nbsp;
+                    <button (click)="cropping.center()" ly-button appearance="icon">
+                      <ly-icon>filter_center_focus</ly-icon>
+                    </button>&nbsp;
+                    <button (click)="cropping.rotate(-90)" ly-button appearance="icon">
+                      <ly-icon>rotate_90_degrees_ccw</ly-icon>
+                    </button>
+                    <button (click)="cropping.fit()" ly-button>Fit</button>
+                    <button (click)="cropping.fitToScreen()" ly-button>Fit to screen</button>
+                    <button (click)="cropping.setScale(1)" ly-button>1:1</button><br> -->
+                  </div>
+                </h4>
+              </div>
+              <div class="modal-body">
+                  <div class="uploaded-image-block">
+                <!-- <ly-img-cropper [withClass]="classes.cropping" #cropping [config]="myConfig" (cropped)="onCropped($event)">
+                </ly-img-cropper> -->
+                <img [src]="url"> 
+</div>
+              </div>
+
+              <div class="modal-footer">
+                <button (click)="cropping.clean()" data-dismiss="modal" ly-button appearance="icon">Cancel</button>
+                <button (click)="toggleShow()" data-dismiss="modal" ly-button appearance="icon">Save</button>
+                <br>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group" *ngIf="edited">
+          <div class="uploaded-image-block">
+            <img [src]="url || base64Santa">
+            <a (click)="toggleShow();removeProfileimage()" class="remove_btn" title="Remove">Remove</a>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="modal take-photo-popup" id="myModalCamera">
+          <div class="modal-dialog modal-dialog-centered">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Adjust photo</h4>
+              </div>
+              <div class="modal-body">
+                <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+              </div>
+
+              <div class="modal-footer">
+                <div class="actionBtn" title="Switch Camera" data-dismiss="modal">Cancel</div>
+                <div class="actionBtn" (click)="triggerSnapshot();toggle()" title="Take Picture" data-dismiss="modal">Save</div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+        <div class="form-group" *ngIf="hide">
+          <div class="uploaded-image-block">
+            <img [src]="webImage || base64Santa">
+            <a class="remove_btn" (click)="toggle();remove()" title="Remove">Remove</a>
+          </div>
+        </div>
+
+
+
+        <!-- <div class="form-group" [ngClass]="{'has-error':profileInf.get('facebookLink').invalid  && (profileInf.get('facebookLink').dirty ||profileInf.get('facebookLink').touched)}">
+          <label>Facebook profile link*</label>
+          <input type="text"  class="form-control small-input link-input" placeholder="Example link" formControlName="facebookLink"  (click)="onpagechange(profileInf.value)">
+          <span class="error-msg" *ngIf="profileInf.get('facebookLink').invalid  && (profileInf.get('facebookLink').dirty ||profileInf.get('facebookLink').touched)">
+            <span *ngIf="profileInf.controls.facebookLink.errors.required">
+              This field is required
+            </span>
+       
+            <span *ngIf="profileInf.controls.facebookLink.errors&&profileInf.controls.facebookLink.errors.url!=undefined">
+              {{profileInf.controls.facebookLink.errors.url.message}}
+            </span>
+          </span>
+        </div> -->
+        <div class="btn-block two-button">
+          <a [routerLink]="['/onboarding/family/santa-letter']" class="btn prev-arrow-button" title="Previous">Previous</a>
+          <a [routerLink]="['/onboarding/family/amazon-wishlist']" class="btn next-arrow-button"  title="Next" (click)="santaLetter()"  >Next</a>
+        </div>
+      </form> 
+     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+
+    </div>
+
+    <app-onboarding-footer></app-onboarding-footer>
+
+  </div>
+</div>

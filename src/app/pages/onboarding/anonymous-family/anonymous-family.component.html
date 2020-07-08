@@ -1,0 +1,51 @@
+<div class="full-page-wrapper">
+  <div class="after-login-container">
+    <div class="content">
+      <app-onboarding-elf-nav></app-onboarding-elf-nav>
+      <h2>Create username and would you like to be anonymous to the family?</h2>
+      <form name="anonymousFamily" [formGroup]="anonymousFamily">
+
+   
+        <div class="form-group" [ngClass]="{'has-error':anonymousFamily.get('userName').touched && anonymousFamily.get('userName').invalid}">
+          <label>Your Username* </label>
+          <input type="text" class="form-control small-input" placeholder="Example name" formControlName="userName">
+          <span class="error-msg" *ngIf="anonymousFamily.get('userName').touched && anonymousFamily.get('userName').invalid">
+            <span *ngIf="anonymousFamily.get('userName').errors.required">
+              This field is required
+            </span>
+            <span *ngIf="anonymousFamily.get('userName').errors.pattern">
+              Please enter valid information
+            </span>
+            <span *ngIf="anonymousFamily.get('userName').errors.minlength">
+              Please Enter minimum 3 charecters
+            </span>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>Anonymous to the Family*</label>
+          <div class="custom-radio-btn">
+            <label class="radio-container">
+              <input type="radio" name="radio" formControlName="radio" value="true" checked>
+              <span>Yes</span>
+            </label>
+            <label class="radio-container">
+              <input type="radio" name="radio" formControlName="radio" value="false">
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+
+
+
+        <div class="btn-block two-button">
+          <a [routerLink]="['/onboarding/elf/profile-photo']" class="btn prev-arrow-button" title="Previous">Previous</a>
+          <a [routerLink]="['/onboarding/elf/family-preferences']" class="btn next-arrow-button" title="Next"  [ngClass]="{'disable': anonymousFamily.invalid}" (click)="onSubmit()">Next</a>
+        </div>
+      </form>
+    </div>
+
+    <app-onboarding-footer></app-onboarding-footer>
+
+  </div>
+</div>

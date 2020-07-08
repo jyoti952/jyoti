@@ -1,0 +1,114 @@
+<div class="full-page-wrapper">
+    <div class="after-login-container">
+        <div class="content family-preferences">
+            <app-onboarding-family-nav></app-onboarding-family-nav>
+            <h2>Enter your family information</h2>
+            <form [formGroup]="familyPref" name="familyPref">
+                <p>How many kids do you have?</p>
+
+                <div class="custom_radio_with_tick_container has_three has_counter">
+
+                    <div class="outer_wrapper">
+                        <div class="custom_radio_tick_outer">
+                            <label><img src="assets/images/boy.svg" alt=""></label>
+                            <div class="outer_border"></div>
+                            <div class="person_counter">
+                                <a [ngClass]="{'disable':counterBoy ==0}" class="plus_minus"
+                                    (click)="decrementBoy()">-</a>
+                                <span>{{counterBoy}} Boy</span>
+                                <a [ngClass]="{'disable':counterBoy==2}" class="plus_minus"
+                                    (click)="incrementBoy()">+</a>
+                            </div>
+                        </div>
+                        <div class="age_slider" *ngIf="[counterBoy]=='1'|| [counterBoy]=='2'">
+                            <div class="age_details">
+                                <span class="person_count">Age of Boy 1</span>
+                                <span class="person_age"> <em>{{ boy1Value }}</em> Years</span>
+                            </div>
+
+                            <ng5-slider [(value)]="boy1Value" formControlName="boy1Age"
+                                (valueChange)="valueChangeFirstBoy($event)" [options]="boy1Options">
+                            </ng5-slider>
+
+
+                        </div>
+                        <div class="age_slider" *ngIf="[counterBoy]=='2'">
+                            <div class="age_details">
+                                <span class="person_count">Age of Boy 2</span>
+                                <span class="person_age"> <em>{{ boy2Value }}</em> Years</span>
+                            </div>
+                            <ng5-slider [(value)]="boy2Value" formControlName="boy2Age"
+                                (valueChange)="valueChangeSecondBoy($event)" [options]="boy2Options">
+                            </ng5-slider>
+                        </div>
+                    </div>
+
+                    <div class="outer_wrapper">
+                        <div class="custom_radio_tick_outer">
+                            <label><img src="assets/images/girl.svg" alt=""></label>
+                            <div class="outer_border"></div>
+                            <div class="person_counter">
+                                <a [ngClass]="{'disable':counterGirl==0}" class="plus_minus disable"
+                                    (click)="decrementGirl()">-</a>
+                                <span>{{counterGirl}} Girl</span>
+                                <a [ngClass]="{'disable':counterGirl==2}" class="plus_minus"
+                                    (click)="incrementGirl()">+</a>
+                            </div>
+                        </div>
+                        <div class="age_slider" *ngIf="[counterGirl]=='1'|| [counterGirl]=='2'">
+                            <div class="age_details">
+                                <span class="person_count">Age of Girl 1</span>
+                                <span class="person_age"> <em>{{ girl1Value }}</em> Years</span>
+                            </div>
+                            <ng5-slider [(value)]="girl1Value" formControlName="girl1Age"
+                                (valueChange)="valueChangeFirstGirl($event)" [options]="girl1Options">
+                            </ng5-slider>
+                        </div>
+                        <div class="age_slider" *ngIf="[counterGirl]=='2'">
+                            <div class="age_details">
+                                <span class="person_count">Age of Girl 2</span>
+                                <span class="person_age"> <em>{{ girl2Value }}</em> Years</span>
+                            </div>
+                            <ng5-slider [(value)]="girl2Value" formControlName="girl2Age"
+                                (valueChange)="valueChangeSecondGirl($event)" [options]="girl2Options">
+                            </ng5-slider>
+                        </div>
+                    </div>
+
+                    <div class="outer_wrapper">
+                        <div class="custom_radio_tick_outer">
+                            <label><img src="assets/images/boy-girl.svg" alt=""></label>
+                            <div class="outer_border"></div>
+                            <div class="person_counter">
+                                <a [ngClass]="{'disable':counterBoth==0}" class="plus_minus"
+                                    (click)="decrementBoth()">-</a>
+                                <span>{{counterBoth}} Non-Binary</span>
+                                <a [ngClass]="{'disable':counterBoth==1}" class="plus_minus"
+                                    (click)="incrementBoth()">+</a>
+                            </div>
+                        </div>
+                        <div class="age_slider" *ngIf="[counterBoth]=='1'">
+                            <div class="age_details">
+                                <span class="person_count">Age of Boy/Girl</span>
+                                <span class="person_age"> <em>{{ boyorgirlValue }}</em> Years</span>
+                            </div>
+                            <ng5-slider [(value)]="boyorgirlValue" formControlName="boyorgirlAge"
+                                (valueChange)="valueChangeBoyOrGirl($event)" [options]="boyOptions"></ng5-slider>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="btn-block two-button">
+                    <a [routerLink]="['/onboarding/family/amazon-wishlist']" class="btn prev-arrow-button"
+                        title="Previous">Previous</a>
+                    <!-- <a [routerLink]="['/onboarding/family/location']" class="btn next-arrow-button" title="Next" [ngClass]="{'disable':familyPref.invalid}"  (click)="onSubmit(familyPref.value);">Next</a> -->
+                    <button [routerLink]="['/onboarding/family/location']" class="btn next-arrow-button" title="Next"
+                        [ngClass]="{'disable':!(counterGirl||counterBoy||counterBoth )}"
+                        (click)="onSubmit(familyPref.value);">Next</button>
+                </div>
+            </form>
+        </div>
+        <app-onboarding-footer></app-onboarding-footer>
+    </div>
+</div>

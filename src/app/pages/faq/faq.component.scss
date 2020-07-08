@@ -1,0 +1,103 @@
+@import "color";
+@import "break-points";
+
+a {
+    color: $white !important;
+}
+
+.full-page-wrapper {
+  h2 {
+    font-size: 44px;
+    line-height: 1.09;
+    letter-spacing: -0.3px;
+    color: $white;
+    text-align: center;
+    margin: 106px 0 51px;
+  }
+}
+
+.faq_options {
+  p {
+    text-align: center;
+    color: $white;
+    font-size: 18px;
+    line-height: 1.33;
+    margin-bottom: 48px;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -13px;
+    li {
+      padding: 0 13px;
+      width: 33.33%;
+      @include bp(smd-max) {
+          width: 100%;
+          margin-top: 12px;
+      }
+      .option_outer {
+        border-radius: 8px;
+        box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);
+        background-color: $twilight;
+        text-align: center;
+        padding: 48px 50px;
+        display: block;
+        i {
+          display: inline-block;
+          margin-bottom: 21px;
+        }
+        h3 {
+          color: $white;
+        }
+        p {
+          color: $white;
+          font-size: 14px;
+          line-height: 1.43;
+          padding: 0 35px;
+          margin: 0;
+          @include bp(lg-max) {
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
